@@ -12,6 +12,13 @@
 		434D87B623116CE600F1DE59 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 434D87B423116CE600F1DE59 /* Main.storyboard */; };
 		434D87B823116CE800F1DE59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 434D87B723116CE800F1DE59 /* Assets.xcassets */; };
 		434D87BB23116CE800F1DE59 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 434D87B923116CE800F1DE59 /* LaunchScreen.storyboard */; };
+		434D87C323116D5800F1DE59 /* GAHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434D87C223116D5800F1DE59 /* GAHomeViewModel.swift */; };
+		434D87C523116DF100F1DE59 /* GAHomeMainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434D87C423116DF100F1DE59 /* GAHomeMainModel.swift */; };
+		434D87C82311728A00F1DE59 /* GANetworkRegistrar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434D87C72311728A00F1DE59 /* GANetworkRegistrar.swift */; };
+		434D87CA231173A200F1DE59 /* Reachablity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434D87C9231173A200F1DE59 /* Reachablity.swift */; };
+		434D87CC231173E800F1DE59 /* GAUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434D87CB231173E800F1DE59 /* GAUtility.swift */; };
+		434D87CE2311766100F1DE59 /* GAServiceHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434D87CD2311766100F1DE59 /* GAServiceHandler.swift */; };
+		434D87D223118BF700F1DE59 /* GAFeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434D87D123118BF700F1DE59 /* GAFeedTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +29,13 @@
 		434D87B723116CE800F1DE59 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		434D87BA23116CE800F1DE59 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		434D87BC23116CE800F1DE59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		434D87C223116D5800F1DE59 /* GAHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GAHomeViewModel.swift; sourceTree = "<group>"; };
+		434D87C423116DF100F1DE59 /* GAHomeMainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GAHomeMainModel.swift; sourceTree = "<group>"; };
+		434D87C72311728A00F1DE59 /* GANetworkRegistrar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GANetworkRegistrar.swift; sourceTree = "<group>"; };
+		434D87C9231173A200F1DE59 /* Reachablity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachablity.swift; sourceTree = "<group>"; };
+		434D87CB231173E800F1DE59 /* GAUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GAUtility.swift; sourceTree = "<group>"; };
+		434D87CD2311766100F1DE59 /* GAServiceHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GAServiceHandler.swift; sourceTree = "<group>"; };
+		434D87D123118BF700F1DE59 /* GAFeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GAFeedTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +68,29 @@
 		434D87AF23116CE600F1DE59 /* Gaana */ = {
 			isa = PBXGroup;
 			children = (
+				434D87C62311727200F1DE59 /* Network */,
 				434D87B023116CE600F1DE59 /* AppDelegate.swift */,
-				434D87B223116CE600F1DE59 /* ViewController.swift */,
 				434D87B423116CE600F1DE59 /* Main.storyboard */,
 				434D87B723116CE800F1DE59 /* Assets.xcassets */,
 				434D87B923116CE800F1DE59 /* LaunchScreen.storyboard */,
 				434D87BC23116CE800F1DE59 /* Info.plist */,
+				434D87B223116CE600F1DE59 /* ViewController.swift */,
+				434D87C223116D5800F1DE59 /* GAHomeViewModel.swift */,
+				434D87C423116DF100F1DE59 /* GAHomeMainModel.swift */,
+				434D87D123118BF700F1DE59 /* GAFeedTableViewCell.swift */,
 			);
 			path = Gaana;
+			sourceTree = "<group>";
+		};
+		434D87C62311727200F1DE59 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				434D87C72311728A00F1DE59 /* GANetworkRegistrar.swift */,
+				434D87C9231173A200F1DE59 /* Reachablity.swift */,
+				434D87CB231173E800F1DE59 /* GAUtility.swift */,
+				434D87CD2311766100F1DE59 /* GAServiceHandler.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,8 +164,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				434D87CE2311766100F1DE59 /* GAServiceHandler.swift in Sources */,
+				434D87C323116D5800F1DE59 /* GAHomeViewModel.swift in Sources */,
 				434D87B323116CE600F1DE59 /* ViewController.swift in Sources */,
+				434D87CC231173E800F1DE59 /* GAUtility.swift in Sources */,
 				434D87B123116CE600F1DE59 /* AppDelegate.swift in Sources */,
+				434D87C523116DF100F1DE59 /* GAHomeMainModel.swift in Sources */,
+				434D87CA231173A200F1DE59 /* Reachablity.swift in Sources */,
+				434D87D223118BF700F1DE59 /* GAFeedTableViewCell.swift in Sources */,
+				434D87C82311728A00F1DE59 /* GANetworkRegistrar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
