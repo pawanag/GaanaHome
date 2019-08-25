@@ -12,7 +12,7 @@ typealias successHandler = (_ data: Data?, _ response: URLResponse?) throws -> V
 typealias failureHandler = (_ data: Data?, _ response: URLResponse?, _ error: Error?) throws -> Void
 
 protocol NetworkRegistrar {
-    func initRequest(request : URLRequest, withSuccess succesHandler : @escaping successHandler, withFailure failureHandler : @escaping failureHandler)
+    func initRequest(request : URLRequest, withSuccess successHandler : @escaping successHandler, withFailure failureHandler : @escaping failureHandler)
 }
 class GANetworkRegistrar: NSObject, NetworkRegistrar, URLSessionDelegate {
 

@@ -19,7 +19,26 @@
 		434D87CC231173E800F1DE59 /* GAUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434D87CB231173E800F1DE59 /* GAUtility.swift */; };
 		434D87CE2311766100F1DE59 /* GAServiceHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434D87CD2311766100F1DE59 /* GAServiceHandler.swift */; };
 		434D87D223118BF700F1DE59 /* GAFeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434D87D123118BF700F1DE59 /* GAFeedTableViewCell.swift */; };
+		434D87D42311B6C700F1DE59 /* GAFeedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434D87D32311B6C700F1DE59 /* GAFeedCollectionViewCell.swift */; };
+		43EB24A62312AEF90061472C /* GACacheImageWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB24A52312AEF90061472C /* GACacheImageWrapper.swift */; };
+		43EB24A82312AF490061472C /* GAImageDownloadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB24A72312AF490061472C /* GAImageDownloadOperation.swift */; };
+		43EB24AA2312AF820061472C /* GAAsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB24A92312AF820061472C /* GAAsyncOperation.swift */; };
+		43EB24B52312BAA10061472C /* GaanaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB24B42312BAA10061472C /* GaanaTests.swift */; };
+		43EB24BE2312BBD80061472C /* GAMockConnectionRegistrar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB24BD2312BBD80061472C /* GAMockConnectionRegistrar.swift */; };
+		43EB24C02312BC650061472C /* GATestUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB24BF2312BC650061472C /* GATestUtility.swift */; };
+		43EB24C32312BCEA0061472C /* GAHomePageSuccess.json in Resources */ = {isa = PBXBuildFile; fileRef = 43EB24C22312BCEA0061472C /* GAHomePageSuccess.json */; };
+		43EB24C52312BF630061472C /* GAHomePageError.json in Resources */ = {isa = PBXBuildFile; fileRef = 43EB24C42312BF630061472C /* GAHomePageError.json */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		43EB24B72312BAA10061472C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 434D87A523116CE600F1DE59 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 434D87AC23116CE600F1DE59;
+			remoteInfo = Gaana;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		434D87AD23116CE600F1DE59 /* Gaana.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gaana.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -36,10 +55,28 @@
 		434D87CB231173E800F1DE59 /* GAUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GAUtility.swift; sourceTree = "<group>"; };
 		434D87CD2311766100F1DE59 /* GAServiceHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GAServiceHandler.swift; sourceTree = "<group>"; };
 		434D87D123118BF700F1DE59 /* GAFeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GAFeedTableViewCell.swift; sourceTree = "<group>"; };
+		434D87D32311B6C700F1DE59 /* GAFeedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GAFeedCollectionViewCell.swift; sourceTree = "<group>"; };
+		43EB24A52312AEF90061472C /* GACacheImageWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GACacheImageWrapper.swift; sourceTree = "<group>"; };
+		43EB24A72312AF490061472C /* GAImageDownloadOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GAImageDownloadOperation.swift; sourceTree = "<group>"; };
+		43EB24A92312AF820061472C /* GAAsyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GAAsyncOperation.swift; sourceTree = "<group>"; };
+		43EB24B22312BAA10061472C /* GaanaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GaanaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		43EB24B42312BAA10061472C /* GaanaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaanaTests.swift; sourceTree = "<group>"; };
+		43EB24B62312BAA10061472C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		43EB24BD2312BBD80061472C /* GAMockConnectionRegistrar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GAMockConnectionRegistrar.swift; sourceTree = "<group>"; };
+		43EB24BF2312BC650061472C /* GATestUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GATestUtility.swift; sourceTree = "<group>"; };
+		43EB24C22312BCEA0061472C /* GAHomePageSuccess.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GAHomePageSuccess.json; sourceTree = "<group>"; };
+		43EB24C42312BF630061472C /* GAHomePageError.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = GAHomePageError.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		434D87AA23116CE600F1DE59 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		43EB24AF2312BAA10061472C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -53,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				434D87AF23116CE600F1DE59 /* Gaana */,
+				43EB24B32312BAA10061472C /* GaanaTests */,
 				434D87AE23116CE600F1DE59 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -61,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				434D87AD23116CE600F1DE59 /* Gaana.app */,
+				43EB24B22312BAA10061472C /* GaanaTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -78,6 +117,7 @@
 				434D87C223116D5800F1DE59 /* GAHomeViewModel.swift */,
 				434D87C423116DF100F1DE59 /* GAHomeMainModel.swift */,
 				434D87D123118BF700F1DE59 /* GAFeedTableViewCell.swift */,
+				434D87D32311B6C700F1DE59 /* GAFeedCollectionViewCell.swift */,
 			);
 			path = Gaana;
 			sourceTree = "<group>";
@@ -89,8 +129,40 @@
 				434D87C9231173A200F1DE59 /* Reachablity.swift */,
 				434D87CB231173E800F1DE59 /* GAUtility.swift */,
 				434D87CD2311766100F1DE59 /* GAServiceHandler.swift */,
+				43EB24A52312AEF90061472C /* GACacheImageWrapper.swift */,
+				43EB24A72312AF490061472C /* GAImageDownloadOperation.swift */,
+				43EB24A92312AF820061472C /* GAAsyncOperation.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		43EB24B32312BAA10061472C /* GaanaTests */ = {
+			isa = PBXGroup;
+			children = (
+				43EB24C12312BC980061472C /* MockData */,
+				43EB24BC2312BBA10061472C /* MockClasses */,
+				43EB24B42312BAA10061472C /* GaanaTests.swift */,
+				43EB24B62312BAA10061472C /* Info.plist */,
+			);
+			path = GaanaTests;
+			sourceTree = "<group>";
+		};
+		43EB24BC2312BBA10061472C /* MockClasses */ = {
+			isa = PBXGroup;
+			children = (
+				43EB24BD2312BBD80061472C /* GAMockConnectionRegistrar.swift */,
+				43EB24BF2312BC650061472C /* GATestUtility.swift */,
+			);
+			path = MockClasses;
+			sourceTree = "<group>";
+		};
+		43EB24C12312BC980061472C /* MockData */ = {
+			isa = PBXGroup;
+			children = (
+				43EB24C42312BF630061472C /* GAHomePageError.json */,
+				43EB24C22312BCEA0061472C /* GAHomePageSuccess.json */,
+			);
+			path = MockData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -113,6 +185,24 @@
 			productReference = 434D87AD23116CE600F1DE59 /* Gaana.app */;
 			productType = "com.apple.product-type.application";
 		};
+		43EB24B12312BAA10061472C /* GaanaTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 43EB24B92312BAA10061472C /* Build configuration list for PBXNativeTarget "GaanaTests" */;
+			buildPhases = (
+				43EB24AE2312BAA10061472C /* Sources */,
+				43EB24AF2312BAA10061472C /* Frameworks */,
+				43EB24B02312BAA10061472C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				43EB24B82312BAA10061472C /* PBXTargetDependency */,
+			);
+			name = GaanaTests;
+			productName = GaanaTests;
+			productReference = 43EB24B22312BAA10061472C /* GaanaTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -125,6 +215,10 @@
 				TargetAttributes = {
 					434D87AC23116CE600F1DE59 = {
 						CreatedOnToolsVersion = 10.1;
+					};
+					43EB24B12312BAA10061472C = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = 434D87AC23116CE600F1DE59;
 					};
 				};
 			};
@@ -142,6 +236,7 @@
 			projectRoot = "";
 			targets = (
 				434D87AC23116CE600F1DE59 /* Gaana */,
+				43EB24B12312BAA10061472C /* GaanaTests */,
 			);
 		};
 /* End PBXProject section */
@@ -157,6 +252,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		43EB24B02312BAA10061472C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43EB24C52312BF630061472C /* GAHomePageError.json in Resources */,
+				43EB24C32312BCEA0061472C /* GAHomePageSuccess.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -164,19 +268,41 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				434D87D42311B6C700F1DE59 /* GAFeedCollectionViewCell.swift in Sources */,
 				434D87CE2311766100F1DE59 /* GAServiceHandler.swift in Sources */,
 				434D87C323116D5800F1DE59 /* GAHomeViewModel.swift in Sources */,
 				434D87B323116CE600F1DE59 /* ViewController.swift in Sources */,
 				434D87CC231173E800F1DE59 /* GAUtility.swift in Sources */,
 				434D87B123116CE600F1DE59 /* AppDelegate.swift in Sources */,
+				43EB24A62312AEF90061472C /* GACacheImageWrapper.swift in Sources */,
 				434D87C523116DF100F1DE59 /* GAHomeMainModel.swift in Sources */,
+				43EB24AA2312AF820061472C /* GAAsyncOperation.swift in Sources */,
 				434D87CA231173A200F1DE59 /* Reachablity.swift in Sources */,
+				43EB24A82312AF490061472C /* GAImageDownloadOperation.swift in Sources */,
 				434D87D223118BF700F1DE59 /* GAFeedTableViewCell.swift in Sources */,
 				434D87C82311728A00F1DE59 /* GANetworkRegistrar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		43EB24AE2312BAA10061472C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43EB24B52312BAA10061472C /* GaanaTests.swift in Sources */,
+				43EB24BE2312BBD80061472C /* GAMockConnectionRegistrar.swift in Sources */,
+				43EB24C02312BC650061472C /* GATestUtility.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		43EB24B82312BAA10061472C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 434D87AC23116CE600F1DE59 /* Gaana */;
+			targetProxy = 43EB24B72312BAA10061472C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		434D87B423116CE600F1DE59 /* Main.storyboard */ = {
@@ -350,6 +476,46 @@
 			};
 			name = Release;
 		};
+		43EB24BA2312BAA10061472C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 885LR8YVNT;
+				INFOPLIST_FILE = GaanaTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.pawan.GaanaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Gaana.app/Gaana";
+			};
+			name = Debug;
+		};
+		43EB24BB2312BAA10061472C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 885LR8YVNT;
+				INFOPLIST_FILE = GaanaTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.pawan.GaanaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Gaana.app/Gaana";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -367,6 +533,15 @@
 			buildConfigurations = (
 				434D87C023116CE800F1DE59 /* Debug */,
 				434D87C123116CE800F1DE59 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		43EB24B92312BAA10061472C /* Build configuration list for PBXNativeTarget "GaanaTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				43EB24BA2312BAA10061472C /* Debug */,
+				43EB24BB2312BAA10061472C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
