@@ -8,25 +8,6 @@
 
 import UIKit
 
-enum FeedMainModelType: Int{
-    case one = 0, two, three, four, five
-    
-    var widthDimension: CGFloat{
-        switch self {
-        case .one:
-            return 150
-        case .two:
-            return 75
-        case .three:
-            return 200
-        case .four:
-            return 150
-        case .five:
-            return 150
-        }
-    }
-}
-
 class GAHomeModel : Decodable {
     var status : Int
     var sections : [GAHomeMainModel]
@@ -38,21 +19,32 @@ class GAHomeModel : Decodable {
 
 class GAHomeMainModel : Decodable {
     var name : String
-    var tracks : [FeedModel]
+    var tracks : [GAFeedModel]
     enum CodingKeys: String, CodingKey {
         case name,tracks
     }
 }
 
-class FeedModel : Codable {
+class GAFeedModel : Codable {
     var imageUrl: String
     var name: String?
     var itemId : String
+    
+    init(imageUrl : String, name : String, itemId : String) {
+        self.imageUrl = imageUrl
+        self.name = name
+        self.itemId = itemId
+    }
     
     enum CodingKeys: String, CodingKey {
         case imageUrl = "atw"
         case name = "tracks"
         case itemId = "itemID"
     }
+}
+
+class GAPlaylistModel {
+    var playlistName : String!
+    var playlistSongs = [GAFeedModel]()
 }
 

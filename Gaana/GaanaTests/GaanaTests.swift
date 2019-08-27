@@ -46,8 +46,5 @@ class GaanaTests: XCTestCase {
         handler.fetchHomeData(urlString: "test") { (mainmodel) in
             print(mainmodel)
         }
-        //        handler.productList { (error, productList, conversionArray, title) in
-        //            XCTAssert(productList?.count == 9,"List should have products detail")
-        //        }
     }
 }

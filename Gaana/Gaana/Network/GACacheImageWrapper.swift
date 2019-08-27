@@ -26,7 +26,7 @@ final class GACacheImageWrapper {
     
     
     //MARK: methods
-    func obtainImageWithPath(url: URL?, indexPath: IndexPath, completionHandler: @escaping GAImageDownloadHandler) {
+    func downloadImageWith(url: URL?, indexPath: IndexPath, completionHandler: @escaping GAImageDownloadHandler) {
         //early exit
         guard let imageUrl = url else{
             return

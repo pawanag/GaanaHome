@@ -20,6 +20,11 @@
 		434D87CE2311766100F1DE59 /* GAServiceHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434D87CD2311766100F1DE59 /* GAServiceHandler.swift */; };
 		434D87D223118BF700F1DE59 /* GAFeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434D87D123118BF700F1DE59 /* GAFeedTableViewCell.swift */; };
 		434D87D42311B6C700F1DE59 /* GAFeedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434D87D32311B6C700F1DE59 /* GAFeedCollectionViewCell.swift */; };
+		43B73B992313780E00DF3CB2 /* GAPlaylistListingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B73B982313780E00DF3CB2 /* GAPlaylistListingVC.swift */; };
+		43B73B9B231378A800DF3CB2 /* GAPlaylistListingVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B73B9A231378A800DF3CB2 /* GAPlaylistListingVM.swift */; };
+		43B73B9D23137AEF00DF3CB2 /* GAPlaylistDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B73B9C23137AEF00DF3CB2 /* GAPlaylistDetailVC.swift */; };
+		43B73B9F23137B0700DF3CB2 /* GAPlaylistDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B73B9E23137B0700DF3CB2 /* GAPlaylistDetailVM.swift */; };
+		43B73BA123137DA000DF3CB2 /* GAPlaylistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B73BA023137DA000DF3CB2 /* GAPlaylistTableViewCell.swift */; };
 		43EB24A62312AEF90061472C /* GACacheImageWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB24A52312AEF90061472C /* GACacheImageWrapper.swift */; };
 		43EB24A82312AF490061472C /* GAImageDownloadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB24A72312AF490061472C /* GAImageDownloadOperation.swift */; };
 		43EB24AA2312AF820061472C /* GAAsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB24A92312AF820061472C /* GAAsyncOperation.swift */; };
@@ -56,6 +61,11 @@
 		434D87CD2311766100F1DE59 /* GAServiceHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GAServiceHandler.swift; sourceTree = "<group>"; };
 		434D87D123118BF700F1DE59 /* GAFeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GAFeedTableViewCell.swift; sourceTree = "<group>"; };
 		434D87D32311B6C700F1DE59 /* GAFeedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GAFeedCollectionViewCell.swift; sourceTree = "<group>"; };
+		43B73B982313780E00DF3CB2 /* GAPlaylistListingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GAPlaylistListingVC.swift; sourceTree = "<group>"; };
+		43B73B9A231378A800DF3CB2 /* GAPlaylistListingVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GAPlaylistListingVM.swift; sourceTree = "<group>"; };
+		43B73B9C23137AEF00DF3CB2 /* GAPlaylistDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GAPlaylistDetailVC.swift; sourceTree = "<group>"; };
+		43B73B9E23137B0700DF3CB2 /* GAPlaylistDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GAPlaylistDetailVM.swift; sourceTree = "<group>"; };
+		43B73BA023137DA000DF3CB2 /* GAPlaylistTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GAPlaylistTableViewCell.swift; sourceTree = "<group>"; };
 		43EB24A52312AEF90061472C /* GACacheImageWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GACacheImageWrapper.swift; sourceTree = "<group>"; };
 		43EB24A72312AF490061472C /* GAImageDownloadOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GAImageDownloadOperation.swift; sourceTree = "<group>"; };
 		43EB24A92312AF820061472C /* GAAsyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GAAsyncOperation.swift; sourceTree = "<group>"; };
@@ -107,6 +117,7 @@
 		434D87AF23116CE600F1DE59 /* Gaana */ = {
 			isa = PBXGroup;
 			children = (
+				43B73B97231377DF00DF3CB2 /* Playlist */,
 				434D87C62311727200F1DE59 /* Network */,
 				434D87B023116CE600F1DE59 /* AppDelegate.swift */,
 				434D87B423116CE600F1DE59 /* Main.storyboard */,
@@ -134,6 +145,18 @@
 				43EB24A92312AF820061472C /* GAAsyncOperation.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		43B73B97231377DF00DF3CB2 /* Playlist */ = {
+			isa = PBXGroup;
+			children = (
+				43B73B982313780E00DF3CB2 /* GAPlaylistListingVC.swift */,
+				43B73B9A231378A800DF3CB2 /* GAPlaylistListingVM.swift */,
+				43B73B9C23137AEF00DF3CB2 /* GAPlaylistDetailVC.swift */,
+				43B73B9E23137B0700DF3CB2 /* GAPlaylistDetailVM.swift */,
+				43B73BA023137DA000DF3CB2 /* GAPlaylistTableViewCell.swift */,
+			);
+			path = Playlist;
 			sourceTree = "<group>";
 		};
 		43EB24B32312BAA10061472C /* GaanaTests */ = {
@@ -270,17 +293,22 @@
 			files = (
 				434D87D42311B6C700F1DE59 /* GAFeedCollectionViewCell.swift in Sources */,
 				434D87CE2311766100F1DE59 /* GAServiceHandler.swift in Sources */,
+				43B73B9F23137B0700DF3CB2 /* GAPlaylistDetailVM.swift in Sources */,
 				434D87C323116D5800F1DE59 /* GAHomeViewModel.swift in Sources */,
 				434D87B323116CE600F1DE59 /* ViewController.swift in Sources */,
 				434D87CC231173E800F1DE59 /* GAUtility.swift in Sources */,
 				434D87B123116CE600F1DE59 /* AppDelegate.swift in Sources */,
+				43B73B992313780E00DF3CB2 /* GAPlaylistListingVC.swift in Sources */,
+				43B73B9B231378A800DF3CB2 /* GAPlaylistListingVM.swift in Sources */,
 				43EB24A62312AEF90061472C /* GACacheImageWrapper.swift in Sources */,
+				43B73B9D23137AEF00DF3CB2 /* GAPlaylistDetailVC.swift in Sources */,
 				434D87C523116DF100F1DE59 /* GAHomeMainModel.swift in Sources */,
 				43EB24AA2312AF820061472C /* GAAsyncOperation.swift in Sources */,
 				434D87CA231173A200F1DE59 /* Reachablity.swift in Sources */,
 				43EB24A82312AF490061472C /* GAImageDownloadOperation.swift in Sources */,
 				434D87D223118BF700F1DE59 /* GAFeedTableViewCell.swift in Sources */,
 				434D87C82311728A00F1DE59 /* GANetworkRegistrar.swift in Sources */,
+				43B73BA123137DA000DF3CB2 /* GAPlaylistTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -18,7 +18,7 @@ class GAFeedCollectionViewCell: UICollectionViewCell {
         cellLabel.text = model.name
         cellImageView.image = nil
         if let url = URL(string: model.imageUrl ){
-            GACacheImageWrapper.sharedInstance.obtainImageWithPath(url: url, indexPath: indexPath) { [weak self](image, url, indexPathObj, error) in
+            GACacheImageWrapper.sharedInstance.downloadImageWith(url: url, indexPath: indexPath) { [weak self](image, url, indexPathObj, error) in
                 if let imageObj = image, indexPath == indexPathObj{
                     self?.cellImageView.image = imageObj
                 }

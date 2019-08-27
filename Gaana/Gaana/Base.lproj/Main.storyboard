@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Glb-X3-Tfv">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -126,6 +126,92 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="116.49175412293854"/>
+        </scene>
+        <!--Playlist ListingVC-->
+        <scene sceneID="fbu-mT-LtS">
+            <objects>
+                <viewController id="Glb-X3-Tfv" customClass="GAPlaylistListingVC" customModule="Gaana" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QhJ-Ft-xSZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hnj-sn-bAl">
+                                <rect key="frame" x="0.0" y="80" width="375" height="587"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GAPlaylistTableViewCell" rowHeight="85" id="qoc-cQ-YgM" customClass="GAPlaylistTableViewCell" customModule="Gaana" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="85"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qoc-cQ-YgM" id="JJN-CL-pqn">
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="84.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kW0-4n-hGj">
+                                                    <rect key="frame" x="20" y="10" width="73" height="65"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="65" id="D9r-VL-S0P"/>
+                                                        <constraint firstAttribute="width" constant="73" id="XzR-Nq-ltj"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Playlist Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7pP-u5-AKY">
+                                                    <rect key="frame" x="119" y="32" width="104" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="7pP-u5-AKY" firstAttribute="centerY" secondItem="JJN-CL-pqn" secondAttribute="centerY" id="1qw-oO-unw"/>
+                                                <constraint firstItem="kW0-4n-hGj" firstAttribute="top" secondItem="JJN-CL-pqn" secondAttribute="top" constant="10" id="BQ0-m7-MwE"/>
+                                                <constraint firstAttribute="bottom" secondItem="kW0-4n-hGj" secondAttribute="bottom" constant="9.5" id="LBH-lk-E11"/>
+                                                <constraint firstItem="kW0-4n-hGj" firstAttribute="leading" secondItem="JJN-CL-pqn" secondAttribute="leading" constant="20" id="cVH-w0-iAT"/>
+                                                <constraint firstItem="7pP-u5-AKY" firstAttribute="leading" secondItem="kW0-4n-hGj" secondAttribute="trailing" constant="26" id="efT-HD-YKo"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="7pP-u5-AKY" secondAttribute="trailing" constant="40" id="o67-Fn-JUK"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="playlistImageView" destination="kW0-4n-hGj" id="Lkp-95-OQF"/>
+                                            <outlet property="playlistName" destination="7pP-u5-AKY" id="CHt-Mz-Bh1"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Glb-X3-Tfv" id="EIL-C3-s3g"/>
+                                    <outlet property="delegate" destination="Glb-X3-Tfv" id="NvI-Td-BGt"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="hnj-sn-bAl" firstAttribute="leading" secondItem="G9b-oc-ktj" secondAttribute="leading" id="KuQ-nw-L6r"/>
+                            <constraint firstItem="hnj-sn-bAl" firstAttribute="trailing" secondItem="G9b-oc-ktj" secondAttribute="trailing" id="ScT-GI-mjX"/>
+                            <constraint firstItem="hnj-sn-bAl" firstAttribute="top" secondItem="G9b-oc-ktj" secondAttribute="top" constant="60" id="VeY-ep-EjL"/>
+                            <constraint firstItem="hnj-sn-bAl" firstAttribute="bottom" secondItem="G9b-oc-ktj" secondAttribute="bottom" id="hai-Xe-kpD"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="G9b-oc-ktj"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="hnj-sn-bAl" id="Vbw-lR-qQk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ADU-mv-v00" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="833" y="116"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Rg2-gd-xZR">
+            <objects>
+                <viewController id="Kwc-Wh-Hdl" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="I91-JL-W0t">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="zsD-ME-Syr"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ftv-RC-jJp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1546" y="116"/>
         </scene>
     </scenes>
 </document>
