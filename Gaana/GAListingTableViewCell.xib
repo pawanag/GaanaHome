@@ -38,6 +38,7 @@
                             <constraint firstAttribute="height" constant="30" id="5VD-9i-zOK"/>
                             <constraint firstAttribute="width" constant="30" id="Fmh-PD-9p8"/>
                         </constraints>
+                        <state key="normal" image="addToPlaylist"/>
                         <connections>
                             <action selector="selectionButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="rTe-iM-6l5"/>
                         </connections>
@@ -63,4 +64,7 @@
             <point key="canvasLocation" x="-51.200000000000003" y="149.77511244377811"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="addToPlaylist" width="24" height="24"/>
+    </resources>
 </document>
