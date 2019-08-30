@@ -23,6 +23,11 @@ final class GAAddToPlaylistVC: UIViewController {
         addBorders()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel?.getPlaylists()
+    }
+    
     private func addBorders() {
         createNewPlaylistButton.layer.borderColor = UIColor.red.cgColor
         createNewPlaylistButton.layer.borderWidth = 1
@@ -51,6 +56,7 @@ final class GAAddToPlaylistVC: UIViewController {
             if let textField = alertController.textFields?[0], let text = textField.text {
                 if text.count > 0 {
                     self?.viewModel?.addSongToNewPlaylist(name: text)
+                    self?.tableView.reloadData()
                 }
             }
         })

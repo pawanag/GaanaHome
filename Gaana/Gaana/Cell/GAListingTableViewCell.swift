@@ -35,7 +35,7 @@ enum ListingCellType {
 class GAListingTableViewCell: UITableViewCell {
 
     @IBOutlet weak var playlistImageView: UIImageView!
-    @IBOutlet weak var playlistName: UILabel!
+    @IBOutlet weak var name: UILabel!
     
     @IBOutlet weak var selectionButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
@@ -55,31 +55,34 @@ class GAListingTableViewCell: UITableViewCell {
     
     private func resetCell() {
         playlistImageView.image = nil
-        playlistName.text = ""
+        name.text = ""
     }
     
     func configure(playlist : GAPlaylistModel, indexPath : IndexPath, type:ListingCellType) {
-        self.playlistName.text = playlist.playlistName
+        self.name.text = playlist.name
         selectionButton.imageView?.image = UIImage.init(named: type.imageName)
         self.listingCellType = type
         self.model = playlist
-        guard let imageUrl = playlist.playlistSongs.first?.imageUrl else {
-            return
-        }
-        GACacheImageWrapper.sharedInstance.downloadImageWith(url: URL(string: imageUrl), indexPath: indexPath, completionHandler: {[weak self] (image, url, indexPathObj, error) in
-            if let image = image, indexPath == indexPathObj {
-                self?.playlistImageView.image = image
+        if let songsArray = playlist.songs?.allObjects as? [GASongModel], !songsArray.isEmpty {
+            guard let imageUrl = songsArray.first?.imageUrl else {
+                return
             }
-        })
+            GACacheImageWrapper.sharedInstance.downloadImageWith(url: URL(string: imageUrl), indexPath: indexPath, completionHandler: {[weak self] (image, url, indexPathObj, error) in
+                if let image = image, indexPath == indexPathObj {
+                    self?.playlistImageView.image = image
+                }
+            })
+
+        }
     }
     
     func configure(song : GASongModel, indexPath : IndexPath, type:ListingCellType) {
-        self.playlistName.text = song.name
+        self.name.text = song.name
         let imageUrl = song.imageUrl
         selectionButton.imageView?.image = UIImage.init(named: type.imageName)
         self.listingCellType = type
         self.model = song
-        GACacheImageWrapper.sharedInstance.downloadImageWith(url: URL(string: imageUrl), indexPath: indexPath, completionHandler: {[weak self] (image, url, indexPathObj, error) in
+        GACacheImageWrapper.sharedInstance.downloadImageWith(url: URL(string: imageUrl ?? ""), indexPath: indexPath, completionHandler: {[weak self] (image, url, indexPathObj, error) in
             if let image = image, indexPath == indexPathObj {
                 self?.playlistImageView.image = image
             }

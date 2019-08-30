@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -57,8 +53,8 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="name" destination="5iP-Hn-WrA" id="cij-n2-LcO"/>
                 <outlet property="playlistImageView" destination="S3x-rv-i0N" id="dSw-uP-BgV"/>
-                <outlet property="playlistName" destination="5iP-Hn-WrA" id="cij-n2-LcO"/>
                 <outlet property="selectionButton" destination="Al0-GJ-lZB" id="6S7-pz-NoQ"/>
             </connections>
             <point key="canvasLocation" x="-51.200000000000003" y="149.77511244377811"/>

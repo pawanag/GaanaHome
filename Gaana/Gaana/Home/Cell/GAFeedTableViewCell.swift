@@ -53,7 +53,7 @@ extension GAFeedTableViewCell : UICollectionViewDataSource, UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if indexPath.row < songModels.count{
             let url = songModels[indexPath.row].imageUrl
-        GACacheImageWrapper.sharedInstance.slowDownImageDownLoadTask(url: URL(string: url))
+        GACacheImageWrapper.sharedInstance.slowDownImageDownLoadTask(url: URL(string: url ?? ""))
         }
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

@@ -23,7 +23,17 @@ final class GAPlaylistListingVC: UIViewController {
         let add = UIBarButtonItem(image: UIImage(named: "add"), style: .plain, target: self, action: #selector(addTapped))
         self.navigationItem.rightBarButtonItem = add
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.getPlaylists()
+        checkIfReloadRequired()
+    }
     
+    private func checkIfReloadRequired() {
+        if tableView.numberOfRows(inSection: 0) != viewModel.playlistData.count {
+            self.tableView.reloadData()
+        }
+    }
     @objc private func addTapped() {
         let alertController = UIAlertController(title: "New Playlist Name", message: "Enter a playlist name", preferredStyle: .alert)
         alertController.addTextField { (textField : UITextField!) -> Void in
@@ -57,14 +67,14 @@ final class GAPlaylistListingVC: UIViewController {
 
 extension GAPlaylistListingVC :UITableViewDataSource,UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.getPlaylists().count
+        return viewModel.playlistData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "GAListingTableViewCell") as? GAListingTableViewCell {
 //            let playlists = viewModel.getPlaylists()
-            if viewModel.getPlaylists().count > indexPath.row {
-            cell.configure(playlist: viewModel.getPlaylists()[indexPath.row], indexPath: indexPath,type : ListingCellType.none)
+            if viewModel.playlistData.count > indexPath.row {
+            cell.configure(playlist: viewModel.playlistData[indexPath.row], indexPath: indexPath,type : ListingCellType.none)
             }
             return cell
         }
@@ -72,9 +82,9 @@ extension GAPlaylistListingVC :UITableViewDataSource,UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if viewModel.getPlaylists().count > indexPath.row {
+        if viewModel.playlistData.count > indexPath.row {
             if let detailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GAPlaylistDetailVC") as? GAPlaylistDetailVC {
-                detailVC.viewModel = GAPlaylistDetailVM(playlistModel: viewModel.getPlaylists()[indexPath.row])
+                detailVC.viewModel = GAPlaylistDetailVM(playlistModel: viewModel.playlistData[indexPath.row])
                 detailVC.delegate = self
                 self.navigationController?.pushViewController(detailVC, animated: true)
             }

@@ -7,6 +7,7 @@
 //
 
 let kcellPadding : CGFloat = 120
+import CoreData
 
 import UIKit
 enum GAViewType: Int{
@@ -42,7 +43,7 @@ enum GAViewType: Int{
     }
 }
 
-struct GAHomeModel : Decodable {
+struct GAHomeModel {
     var status : Int
     var sections : [GAHomeMainModel]
     enum CodingKeys: String, CodingKey {
@@ -51,36 +52,19 @@ struct GAHomeModel : Decodable {
     }
 }
 
-struct GAHomeMainModel : Decodable {
+struct GAHomeMainModel {
     var name : String
-    var tracks : [GASongModel]
+    var tracks = [GASongModel]()
     var viewType: GAViewType = .unknown
-    enum CodingKeys: String, CodingKey {
-        case name,tracks
-    }
-}
-
-struct GASongModel : Codable {
-    var imageUrl: String
-    var name: String?
-    var itemId : String
     
-    init(imageUrl : String, name : String, itemId : String) {
-        self.imageUrl = imageUrl
-        self.name = name
-        self.itemId = itemId
-    }
     
-    enum CodingKeys: String, CodingKey {
-        case imageUrl = "atw"
-        case name = "name"
-        case itemId = "itemID"
-    }
+        init(modelDict : [String: Any]) {
+            name = modelDict["name"] as? String ?? ""
+            if let tracks1 = modelDict["tracks"] as? [[String : Any]]{
+                for obj in tracks1{
+                    let obj = GASongModel(modelDict: obj)
+                    tracks.append(obj)
+                }
+            }
+        }
 }
-
-struct GAPlaylistModel {
-    var playlistName : String!
-    var playlistSongs = [GASongModel]()
-    
-}
-

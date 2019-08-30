@@ -18,48 +18,22 @@ final class GAAddToPlaylistVM {
     }
     
     func addSongToNewPlaylist(name : String) {
-//        GACoreDataManager.sharedInstance.addSongToNewPlaylist(name: name, song: modelToBeSaved)
+        GACoreDataManager.sharedInstance.addSongToNewPlaylist(name: name, songModel: modelToBeSaved)
+        playlistData = GACoreDataManager.sharedInstance.getAllPlaylists()
     }
-    
-//    func getAllPlaylists() -> [GAPlaylistModel]? {
-//       let arrayOfPlaylist = GACoreDataManager.sharedInstance.getAllPlaylists()
-//        return
-//    }
-    
-    
-    func dummyData() {
-        var playlist = GAPlaylistModel()
-        playlist.playlistName = "test1"
-        let songModel = GASongModel(imageUrl: "http://a10.gaanacdn.com/images/albums/72/2657072/crop_480x480_2657072.jpg", name: "SeÃ±orita", itemId: "27290114")
-        playlist.playlistSongs.append(songModel)
-        playlist.playlistSongs.append(songModel)
-        playlistData.append(playlist)
+
+    func addSongToPlaylists(playlists:[GAPlaylistModel]) {
+        
     }
     func getPlaylists() -> [GAPlaylistModel] {
-        dummyData()
-        return playlistData
-        if playlistData.count > 0 {
+        if playlistData.count == 0 {
+            playlistData = GACoreDataManager.sharedInstance.getAllPlaylists()
             return playlistData
         } else {
-//            let playlist = GACoreDataManager.sharedInstance.getAllPlaylists()
             return playlistData
         }
     }
-    
-//    func mapData(model : [PlaylistModel]) -> [GAPlaylistModel] {
-////        let names = model.map({ (song) -> PlaylistModel in
-////            return song.name
-////        })
-//    }
-    
-    func createPlaylist(name : String, song : GASongModel) {
-        var playlistObj = GAPlaylistModel()
-        playlistObj.playlistName = name
-        playlistObj.playlistSongs.append(song)
-        self.playlistData.append(playlistObj)
-        persistPlaylist()
-    }
-    
+        
     private func persistPlaylist() {
         
         

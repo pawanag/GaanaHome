@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="19A471t" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="PlaylistModel" representedClassName="PlaylistModel" syncable="YES" codeGenerationType="class">
+    <entity name="GAPlaylistModel" representedClassName="GAPlaylistModel" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="songs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SongModel" inverseName="playlist" inverseEntity="SongModel" syncable="YES"/>
+        <relationship name="songs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GASongModel" syncable="YES"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="name"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
-    <entity name="SongModel" representedClassName="SongModel" syncable="YES" codeGenerationType="class">
+    <entity name="GASongModel" representedClassName="GASongModel" syncable="YES">
         <attribute name="imageUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="itemId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="playlist" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PlaylistModel" inverseName="songs" inverseEntity="PlaylistModel" syncable="YES"/>
+        <relationship name="playlist" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GAPlaylistModel" syncable="YES"/>
     </entity>
     <elements>
-        <element name="SongModel" positionX="-312.69921875" positionY="3.29296875" width="128" height="103"/>
-        <element name="PlaylistModel" positionX="-692.64453125" positionY="-16.62109375" width="128" height="73"/>
+        <element name="GAPlaylistModel" positionX="-692.64453125" positionY="-16.62109375" width="128" height="75"/>
+        <element name="GASongModel" positionX="-312.69921875" positionY="3.29296875" width="128" height="105"/>
     </elements>
 </model>

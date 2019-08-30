@@ -48,7 +48,7 @@ final class GAPlaylistDetailVC: UIViewController {
     
     @objc func deleteTapped() {
         
-        let alertController = UIAlertController(title: viewModel?.playlistModel?.playlistName ?? "", message: "Do you want to delete this playlist?", preferredStyle: .alert)
+        let alertController = UIAlertController(title: viewModel?.playlistModel?.name ?? "", message: "Do you want to delete this playlist?", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Ok", style: .default, handler: {[weak self] alert -> Void in
             self?.viewModel?.modelState = .deleted
             self?.navigationController?.popViewController(animated: true)
@@ -133,11 +133,15 @@ extension GAPlaylistDetailVC : UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            viewModel?.removeSongAtIndex(index:indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            tableView.reloadData()
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+            
+//            tableView.deleteRows(at: [indexPath], with: .fade)
+            if let songsArray = viewModel?.playlistModel?.songs?.allObjects as? [GASongModel], songsArray.count == 1, indexPath.row == 0 {
+                viewModel?.removeSongAtIndex(index:indexPath.row)
+                self.navigationController?.popViewController(animated: true)
+            } else {
+                viewModel?.removeSongAtIndex(index:indexPath.row)
+                tableView.reloadData()
+            }
         }
     }
     

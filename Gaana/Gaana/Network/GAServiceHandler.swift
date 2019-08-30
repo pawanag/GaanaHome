@@ -25,16 +25,23 @@ class GAServiceHandler: NSObject {
         connectionHandler.initRequest(request: urlRequest, withSuccess: { (data, response) in
             //
             do {
-                let decoder = JSONDecoder()
-                let mainModel = try decoder.decode(GAHomeModel.self, from: data!)
-                let homeModel = mainModel.sections
-                if homeModel.count > 0 {
-                    completion(homeModel)
+                if let dataResp = data, let jsonData = try? JSONSerialization.jsonObject(with: dataResp, options: .allowFragments) as? [String : Any]{
+                    //append feed array and return
+                    if let feedArr = jsonData?["sections"] as? [[String : Any]]{
+                        var mainModels = [GAHomeMainModel]()
+                        for (_,dictObj) in feedArr.enumerated(){
+                            let model = GAHomeMainModel(modelDict: dictObj)
+//                            model.viewType =  FeedMainModelType(rawValue: index) ?? FeedMainModelType.one
+                            mainModels.append(model)
+                        }
+                        completion(mainModels)
+                    }else{
+                        completion([])
+                    }
+                }else{
+                    completion([])
                 }
-                print(mainModel)
-            } catch {
-                print(error)
-            }
+            } 
         }) { (data, response, error) in
             //
         }

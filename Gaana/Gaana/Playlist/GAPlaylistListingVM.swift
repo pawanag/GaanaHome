@@ -14,47 +14,18 @@ final class GAPlaylistListingVM: NSObject {
     
     override init() {
         super.init()
-
-//        GACoreDataManager.sharedInstance.getAllPlaylists()
-        dummyData()
+        playlistData = GACoreDataManager.sharedInstance.getAllPlaylists()
     }
-    func dummyData() {
-        var playlist = GAPlaylistModel()
-        playlist.playlistName = "test1"
-        let songModel1 = GASongModel(imageUrl: "http://a10.gaanacdn.com/images/albums/72/2657072/crop_480x480_2657072.jpg", name: "SeÃ±orita", itemId: "27290114")
-        
-        let songModel4 = GASongModel(imageUrl: "http://a10.gaanacdn.com/images/albums/69/2437469/crop_480x480_2437469.jpg", name: "On My Way", itemId: "25658817")
 
-        playlist.playlistSongs.append(songModel1)
-        playlist.playlistSongs.append(songModel4)
-        
-        var playlist1 = GAPlaylistModel()
-        playlist1.playlistName = "test2"
-        let songModel2 = GASongModel(imageUrl: "http://a10.gaanacdn.com/images/albums/72/2657072/crop_480x480_2657072.jpg", name: "SeÃ±orita", itemId: "27290114")
-        let songModel3 = GASongModel(imageUrl: "http://a10.gaanacdn.com/images/albums/69/2437469/crop_480x480_2437469.jpg", name: "On My Way", itemId: "25658817")
-        playlist1.playlistSongs.append(songModel2)
-        playlist1.playlistSongs.append(songModel3)
-        
-        playlistData.append(playlist)
-        playlistData.append(playlist1)
-    }
-    func getPlaylists() -> [GAPlaylistModel] {
-        
-        return playlistData
+    func getPlaylists() {
+        playlistData = GACoreDataManager.sharedInstance.getAllPlaylists()
     }
     
     func createPlaylist(name : String)  {
-        var playlist = GAPlaylistModel()
-        playlist.playlistName = name
+        let playlist = GAPlaylistModel(context: GACoreDataManager.sharedInstance.persistentContainer.viewContext)
+        playlist.name = name
+        GACoreDataManager.sharedInstance.saveContext()
         playlistData.append(playlist)
-        persistPlaylist()
-    }
-    
-    func createPlaylist(name : String, song : GASongModel) {
-        var playlistObj = GAPlaylistModel()
-        playlistObj.playlistName = name
-        playlistObj.playlistSongs.append(song)
-        self.playlistData.append(playlistObj)
         persistPlaylist()
     }
     
@@ -62,13 +33,14 @@ final class GAPlaylistListingVM: NSObject {
         switch state {
         case .deleted:
             for (index,model) in playlistData.enumerated() {
-                if model.playlistName == playlistModel.playlistName {
+                if model.name == playlistModel.name {
                     playlistData.remove(at: index)
+                    GACoreDataManager.sharedInstance.removePlaylist(name: model.name ?? "")
                 }
             }
         case .updated:
             for (index,model) in playlistData.enumerated() {
-                if model.playlistName == playlistModel.playlistName {
+                if model.name == playlistModel.name {
                     playlistData[index] = model
                 }
             }

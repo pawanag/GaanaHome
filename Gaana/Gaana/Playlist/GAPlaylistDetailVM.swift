@@ -19,17 +19,19 @@ final class GAPlaylistDetailVM: NSObject {
     }
     
     func getFeeds() -> [GASongModel] {
-        if let songData = playlistModel?.playlistSongs {
-            return songData
+        if let songData = playlistModel?.songs?.allObjects as? [GASongModel], !songData.isEmpty {
+//        if let songData = playlistModel?.playlistSongs {
+                return songData
         }
         return [GASongModel]()
     }
     
     func removeSongAtIndex(index :Int) {
-        if var songData = playlistModel?.playlistSongs, songData.count > index {
+        if var songData = playlistModel?.songs?.allObjects as? [GASongModel], songData.count > index {
             modelState = .updated
-            songData.remove(at: index)
-            playlistModel?.playlistSongs = songData
+            let song = songData.remove(at: index)
+            GACoreDataManager.sharedInstance.updatePlaylist(name: playlistModel?.name ?? "", songModel: song)
+//            playlistModel?.playlistSongs = songData
         }
     }
 }
