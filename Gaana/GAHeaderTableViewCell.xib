@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="GAHeaderTableViewCell" rowHeight="240" id="KGk-i7-Jjw" customClass="GAHeaderTableViewCell" customModule="Gaana" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="337" height="240"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="337" height="239.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ALY-OG-P65">
+                        <rect key="frame" x="0.0" y="0.0" width="337" height="239.5"/>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="ALY-OG-P65" secondAttribute="trailing" id="TNQ-IT-1za"/>
+                    <constraint firstItem="ALY-OG-P65" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="cXb-AU-tWP"/>
+                    <constraint firstItem="ALY-OG-P65" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="g6S-U8-l9j"/>
+                    <constraint firstAttribute="bottom" secondItem="ALY-OG-P65" secondAttribute="bottom" id="sKT-YW-Lm1"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="headerImageView" destination="ALY-OG-P65" id="wm2-mu-1r0"/>
+            </connections>
+            <point key="canvasLocation" x="151.19999999999999" y="228.48575712143929"/>
+        </tableViewCell>
+    </objects>
+</document>

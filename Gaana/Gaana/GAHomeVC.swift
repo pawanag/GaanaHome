@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  GAHomeVC.swift
 //  Gaana
 //
 //  Created by Pawan Agarwal on 24/08/19.
@@ -8,9 +8,9 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class GAHomeVC: UIViewController {
 
-    private let viewModel = GAHomeViewModel()
+    private let viewModel = GAHomeVM()
     @IBOutlet weak var tableView : UITableView!
     
     override func viewDidLoad() {
@@ -18,8 +18,6 @@ class ViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         self.populateData()
-        tableView.estimatedRowHeight = 400
-        tableView.rowHeight = UITableView.automaticDimension
     }
     
     private func populateData() {
@@ -44,18 +42,35 @@ class ViewController: UIViewController {
 
 }
 
-extension ViewController : UITableViewDataSource, UITableViewDelegate {
+extension GAHomeVC : UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.modelData.count
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let modelType = viewModel.modelData[indexPath.row].viewType
+        return modelType.cellHeight + kcellPadding
+    }
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "GAFeedTableViewCell") as? GAFeedTableViewCell {
             if viewModel.modelData.count > indexPath.row{
                 cell.configure(model: viewModel.modelData[indexPath.row] )
+                cell.delegate = self
             }
             return cell
         }
         return UITableViewCell()
+    }
+}
+
+extension GAHomeVC : GAHomeListingAction {
+    func seeAllTapped(feedData: [GAFeedModel]) {
+        if let detailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GASongsListingVC") as? GASongsListingVC {
+            detailVC.viewModel = GASongsListingVM(feedData: feedData)
+            self.navigationController?.pushViewController(detailVC, animated: true)
+        }
+        
     }
 }

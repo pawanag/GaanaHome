@@ -8,31 +8,31 @@
 
 import UIKit
 
+protocol GAHomeListingAction : class {
+    func seeAllTapped(feedData:[GAFeedModel])
+}
+
 class GAFeedTableViewCell: UITableViewCell {
 
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var headerText: UILabel!
     private var feedModels = [GAFeedModel]()
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
+    private var cellType : GAViewType = .unknown
+    weak var delegate : GAHomeListingAction?
+    
     func configure(model : GAHomeMainModel) {
         self.headerText.text = model.name
         self.feedModels = model.tracks
+        cellType = model.viewType
 //        let flowLayout = UICollectionViewFlowLayout()
 //       
 //            flowLayout.scrollDirection = .horizontal
 //            collectionView.collectionViewLayout = flowLayout
         
         collectionView.reloadData()
+    }
+    @IBAction func seeAllTapped(_ sender: UIButton) {
+        self.delegate?.seeAllTapped(feedData: feedModels)
     }
 }
 
@@ -44,7 +44,7 @@ extension GAFeedTableViewCell : UICollectionViewDataSource, UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GAFeedCollectionViewCell", for: indexPath) as? GAFeedCollectionViewCell {
             if feedModels.count > indexPath.row {
-                cell.configure(model: feedModels[indexPath.row], indexPath: indexPath, cellHeight: 200)
+                cell.configure(model: feedModels[indexPath.row], indexPath: indexPath)
             }
             return cell
         }
@@ -53,11 +53,11 @@ extension GAFeedTableViewCell : UICollectionViewDataSource, UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if indexPath.row < feedModels.count{
             let url = feedModels[indexPath.row].imageUrl
-            GACacheImageWrapper.sharedInstance.slowDownImageDownLoadTask(url: URL(string: url))
+        GACacheImageWrapper.sharedInstance.slowDownImageDownLoadTask(url: URL(string: url))
         }
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 155, height: 155 + 30)
+        return CGSize(width: cellType.cellWidth, height: cellType.cellHeight)
     }
     
 }

@@ -8,11 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		434D87B123116CE600F1DE59 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434D87B023116CE600F1DE59 /* AppDelegate.swift */; };
-		434D87B323116CE600F1DE59 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434D87B223116CE600F1DE59 /* ViewController.swift */; };
+		434D87B323116CE600F1DE59 /* GAHomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434D87B223116CE600F1DE59 /* GAHomeVC.swift */; };
 		434D87B623116CE600F1DE59 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 434D87B423116CE600F1DE59 /* Main.storyboard */; };
 		434D87B823116CE800F1DE59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 434D87B723116CE800F1DE59 /* Assets.xcassets */; };
 		434D87BB23116CE800F1DE59 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 434D87B923116CE800F1DE59 /* LaunchScreen.storyboard */; };
-		434D87C323116D5800F1DE59 /* GAHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434D87C223116D5800F1DE59 /* GAHomeViewModel.swift */; };
+		434D87C323116D5800F1DE59 /* GAHomeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434D87C223116D5800F1DE59 /* GAHomeVM.swift */; };
 		434D87C523116DF100F1DE59 /* GAHomeMainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434D87C423116DF100F1DE59 /* GAHomeMainModel.swift */; };
 		434D87C82311728A00F1DE59 /* GANetworkRegistrar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434D87C72311728A00F1DE59 /* GANetworkRegistrar.swift */; };
 		434D87CA231173A200F1DE59 /* Reachablity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434D87C9231173A200F1DE59 /* Reachablity.swift */; };
@@ -20,11 +20,18 @@
 		434D87CE2311766100F1DE59 /* GAServiceHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434D87CD2311766100F1DE59 /* GAServiceHandler.swift */; };
 		434D87D223118BF700F1DE59 /* GAFeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434D87D123118BF700F1DE59 /* GAFeedTableViewCell.swift */; };
 		434D87D42311B6C700F1DE59 /* GAFeedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434D87D32311B6C700F1DE59 /* GAFeedCollectionViewCell.swift */; };
+		435AA8E12318FCB500F2A642 /* GAListingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435AA8DF2318FCB500F2A642 /* GAListingTableViewCell.swift */; };
+		435AA8E22318FCB500F2A642 /* GAListingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 435AA8E02318FCB500F2A642 /* GAListingTableViewCell.xib */; };
+		43A9DCD82319016F00A5A9BE /* GAHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A9DCD62319016F00A5A9BE /* GAHeaderTableViewCell.swift */; };
+		43A9DCD92319016F00A5A9BE /* GAHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43A9DCD72319016F00A5A9BE /* GAHeaderTableViewCell.xib */; };
+		43A9DCDB23190C9A00A5A9BE /* GASongsListingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A9DCDA23190C9A00A5A9BE /* GASongsListingVC.swift */; };
+		43A9DCDD23190DA000A5A9BE /* GASongsListingVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A9DCDC23190DA000A5A9BE /* GASongsListingVM.swift */; };
+		43A9DCDF23191CB000A5A9BE /* GAAddToPlaylistVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A9DCDE23191CB000A5A9BE /* GAAddToPlaylistVC.swift */; };
+		43A9DCE123191CFB00A5A9BE /* GAAddToPlaylistVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A9DCE023191CFB00A5A9BE /* GAAddToPlaylistVM.swift */; };
 		43B73B992313780E00DF3CB2 /* GAPlaylistListingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B73B982313780E00DF3CB2 /* GAPlaylistListingVC.swift */; };
 		43B73B9B231378A800DF3CB2 /* GAPlaylistListingVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B73B9A231378A800DF3CB2 /* GAPlaylistListingVM.swift */; };
 		43B73B9D23137AEF00DF3CB2 /* GAPlaylistDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B73B9C23137AEF00DF3CB2 /* GAPlaylistDetailVC.swift */; };
 		43B73B9F23137B0700DF3CB2 /* GAPlaylistDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B73B9E23137B0700DF3CB2 /* GAPlaylistDetailVM.swift */; };
-		43B73BA123137DA000DF3CB2 /* GAPlaylistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B73BA023137DA000DF3CB2 /* GAPlaylistTableViewCell.swift */; };
 		43EB24A62312AEF90061472C /* GACacheImageWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB24A52312AEF90061472C /* GACacheImageWrapper.swift */; };
 		43EB24A82312AF490061472C /* GAImageDownloadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB24A72312AF490061472C /* GAImageDownloadOperation.swift */; };
 		43EB24AA2312AF820061472C /* GAAsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB24A92312AF820061472C /* GAAsyncOperation.swift */; };
@@ -48,12 +55,12 @@
 /* Begin PBXFileReference section */
 		434D87AD23116CE600F1DE59 /* Gaana.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gaana.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		434D87B023116CE600F1DE59 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		434D87B223116CE600F1DE59 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		434D87B223116CE600F1DE59 /* GAHomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GAHomeVC.swift; sourceTree = "<group>"; };
 		434D87B523116CE600F1DE59 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		434D87B723116CE800F1DE59 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		434D87BA23116CE800F1DE59 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		434D87BC23116CE800F1DE59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		434D87C223116D5800F1DE59 /* GAHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GAHomeViewModel.swift; sourceTree = "<group>"; };
+		434D87C223116D5800F1DE59 /* GAHomeVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GAHomeVM.swift; sourceTree = "<group>"; };
 		434D87C423116DF100F1DE59 /* GAHomeMainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GAHomeMainModel.swift; sourceTree = "<group>"; };
 		434D87C72311728A00F1DE59 /* GANetworkRegistrar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GANetworkRegistrar.swift; sourceTree = "<group>"; };
 		434D87C9231173A200F1DE59 /* Reachablity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachablity.swift; sourceTree = "<group>"; };
@@ -61,11 +68,18 @@
 		434D87CD2311766100F1DE59 /* GAServiceHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GAServiceHandler.swift; sourceTree = "<group>"; };
 		434D87D123118BF700F1DE59 /* GAFeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GAFeedTableViewCell.swift; sourceTree = "<group>"; };
 		434D87D32311B6C700F1DE59 /* GAFeedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GAFeedCollectionViewCell.swift; sourceTree = "<group>"; };
+		435AA8DF2318FCB500F2A642 /* GAListingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GAListingTableViewCell.swift; sourceTree = "<group>"; };
+		435AA8E02318FCB500F2A642 /* GAListingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GAListingTableViewCell.xib; sourceTree = "<group>"; };
+		43A9DCD62319016F00A5A9BE /* GAHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GAHeaderTableViewCell.swift; sourceTree = "<group>"; };
+		43A9DCD72319016F00A5A9BE /* GAHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GAHeaderTableViewCell.xib; sourceTree = "<group>"; };
+		43A9DCDA23190C9A00A5A9BE /* GASongsListingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GASongsListingVC.swift; sourceTree = "<group>"; };
+		43A9DCDC23190DA000A5A9BE /* GASongsListingVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GASongsListingVM.swift; sourceTree = "<group>"; };
+		43A9DCDE23191CB000A5A9BE /* GAAddToPlaylistVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GAAddToPlaylistVC.swift; sourceTree = "<group>"; };
+		43A9DCE023191CFB00A5A9BE /* GAAddToPlaylistVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GAAddToPlaylistVM.swift; sourceTree = "<group>"; };
 		43B73B982313780E00DF3CB2 /* GAPlaylistListingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GAPlaylistListingVC.swift; sourceTree = "<group>"; };
 		43B73B9A231378A800DF3CB2 /* GAPlaylistListingVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GAPlaylistListingVM.swift; sourceTree = "<group>"; };
 		43B73B9C23137AEF00DF3CB2 /* GAPlaylistDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GAPlaylistDetailVC.swift; sourceTree = "<group>"; };
 		43B73B9E23137B0700DF3CB2 /* GAPlaylistDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GAPlaylistDetailVM.swift; sourceTree = "<group>"; };
-		43B73BA023137DA000DF3CB2 /* GAPlaylistTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GAPlaylistTableViewCell.swift; sourceTree = "<group>"; };
 		43EB24A52312AEF90061472C /* GACacheImageWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GACacheImageWrapper.swift; sourceTree = "<group>"; };
 		43EB24A72312AF490061472C /* GAImageDownloadOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GAImageDownloadOperation.swift; sourceTree = "<group>"; };
 		43EB24A92312AF820061472C /* GAAsyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GAAsyncOperation.swift; sourceTree = "<group>"; };
@@ -99,6 +113,10 @@
 		434D87A423116CE600F1DE59 = {
 			isa = PBXGroup;
 			children = (
+				43A9DCD62319016F00A5A9BE /* GAHeaderTableViewCell.swift */,
+				43A9DCD72319016F00A5A9BE /* GAHeaderTableViewCell.xib */,
+				435AA8DF2318FCB500F2A642 /* GAListingTableViewCell.swift */,
+				435AA8E02318FCB500F2A642 /* GAListingTableViewCell.xib */,
 				434D87AF23116CE600F1DE59 /* Gaana */,
 				43EB24B32312BAA10061472C /* GaanaTests */,
 				434D87AE23116CE600F1DE59 /* Products */,
@@ -124,11 +142,13 @@
 				434D87B723116CE800F1DE59 /* Assets.xcassets */,
 				434D87B923116CE800F1DE59 /* LaunchScreen.storyboard */,
 				434D87BC23116CE800F1DE59 /* Info.plist */,
-				434D87B223116CE600F1DE59 /* ViewController.swift */,
-				434D87C223116D5800F1DE59 /* GAHomeViewModel.swift */,
+				434D87B223116CE600F1DE59 /* GAHomeVC.swift */,
+				434D87C223116D5800F1DE59 /* GAHomeVM.swift */,
 				434D87C423116DF100F1DE59 /* GAHomeMainModel.swift */,
 				434D87D123118BF700F1DE59 /* GAFeedTableViewCell.swift */,
 				434D87D32311B6C700F1DE59 /* GAFeedCollectionViewCell.swift */,
+				43A9DCDA23190C9A00A5A9BE /* GASongsListingVC.swift */,
+				43A9DCDC23190DA000A5A9BE /* GASongsListingVM.swift */,
 			);
 			path = Gaana;
 			sourceTree = "<group>";
@@ -154,7 +174,8 @@
 				43B73B9A231378A800DF3CB2 /* GAPlaylistListingVM.swift */,
 				43B73B9C23137AEF00DF3CB2 /* GAPlaylistDetailVC.swift */,
 				43B73B9E23137B0700DF3CB2 /* GAPlaylistDetailVM.swift */,
-				43B73BA023137DA000DF3CB2 /* GAPlaylistTableViewCell.swift */,
+				43A9DCDE23191CB000A5A9BE /* GAAddToPlaylistVC.swift */,
+				43A9DCE023191CFB00A5A9BE /* GAAddToPlaylistVM.swift */,
 			);
 			path = Playlist;
 			sourceTree = "<group>";
@@ -269,6 +290,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43A9DCD92319016F00A5A9BE /* GAHeaderTableViewCell.xib in Resources */,
+				435AA8E22318FCB500F2A642 /* GAListingTableViewCell.xib in Resources */,
 				434D87BB23116CE800F1DE59 /* LaunchScreen.storyboard in Resources */,
 				434D87B823116CE800F1DE59 /* Assets.xcassets in Resources */,
 				434D87B623116CE600F1DE59 /* Main.storyboard in Resources */,
@@ -294,21 +317,26 @@
 				434D87D42311B6C700F1DE59 /* GAFeedCollectionViewCell.swift in Sources */,
 				434D87CE2311766100F1DE59 /* GAServiceHandler.swift in Sources */,
 				43B73B9F23137B0700DF3CB2 /* GAPlaylistDetailVM.swift in Sources */,
-				434D87C323116D5800F1DE59 /* GAHomeViewModel.swift in Sources */,
-				434D87B323116CE600F1DE59 /* ViewController.swift in Sources */,
+				434D87C323116D5800F1DE59 /* GAHomeVM.swift in Sources */,
+				43A9DCDD23190DA000A5A9BE /* GASongsListingVM.swift in Sources */,
+				434D87B323116CE600F1DE59 /* GAHomeVC.swift in Sources */,
+				43A9DCDB23190C9A00A5A9BE /* GASongsListingVC.swift in Sources */,
 				434D87CC231173E800F1DE59 /* GAUtility.swift in Sources */,
 				434D87B123116CE600F1DE59 /* AppDelegate.swift in Sources */,
 				43B73B992313780E00DF3CB2 /* GAPlaylistListingVC.swift in Sources */,
 				43B73B9B231378A800DF3CB2 /* GAPlaylistListingVM.swift in Sources */,
+				43A9DCDF23191CB000A5A9BE /* GAAddToPlaylistVC.swift in Sources */,
 				43EB24A62312AEF90061472C /* GACacheImageWrapper.swift in Sources */,
+				43A9DCD82319016F00A5A9BE /* GAHeaderTableViewCell.swift in Sources */,
 				43B73B9D23137AEF00DF3CB2 /* GAPlaylistDetailVC.swift in Sources */,
 				434D87C523116DF100F1DE59 /* GAHomeMainModel.swift in Sources */,
 				43EB24AA2312AF820061472C /* GAAsyncOperation.swift in Sources */,
 				434D87CA231173A200F1DE59 /* Reachablity.swift in Sources */,
 				43EB24A82312AF490061472C /* GAImageDownloadOperation.swift in Sources */,
+				43A9DCE123191CFB00A5A9BE /* GAAddToPlaylistVM.swift in Sources */,
 				434D87D223118BF700F1DE59 /* GAFeedTableViewCell.swift in Sources */,
 				434D87C82311728A00F1DE59 /* GANetworkRegistrar.swift in Sources */,
-				43B73BA123137DA000DF3CB2 /* GAPlaylistTableViewCell.swift in Sources */,
+				435AA8E12318FCB500F2A642 /* GAListingTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

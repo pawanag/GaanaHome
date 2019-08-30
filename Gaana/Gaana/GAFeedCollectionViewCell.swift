@@ -12,9 +12,9 @@ class GAFeedCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var cellLabel: UILabel!
     @IBOutlet weak var cellImageView: UIImageView!
-    @IBOutlet weak var heightConstraint: NSLayoutConstraint!
+
     
-    func configure(model: GAFeedModel, indexPath: IndexPath, cellHeight: CGFloat){
+    func configure(model: GAFeedModel, indexPath: IndexPath){
         cellLabel.text = model.name
         cellImageView.image = nil
         if let url = URL(string: model.imageUrl ){
@@ -23,9 +23,7 @@ class GAFeedCollectionViewCell: UICollectionViewCell {
                     self?.cellImageView.image = imageObj
                 }
             }
-//            heightConstraint.constant = cellHeight
         }
-        
     }
 
 }

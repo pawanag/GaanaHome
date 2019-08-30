@@ -1,15 +1,15 @@
 //
-//  GAPlaylistDetailVM.swift
+//  GASongsListingVM.swift
 //  Gaana
 //
-//  Created by Pawan Agarwal on 26/08/19.
+//  Created by Pawan Agarwal on 30/08/19.
 //  Copyright © 2019 Pawan. All rights reserved.
 //
 
 import UIKit
 
-class GAPlaylistDetailVM: NSObject {
-
+class GASongsListingVM: NSObject {
+    
     private var feedData : [GAFeedModel]?
     
     init(feedData : [GAFeedModel]) {
@@ -24,5 +24,3 @@ class GAPlaylistDetailVM: NSObject {
         return [GAFeedModel]()
     }
 }
-
-

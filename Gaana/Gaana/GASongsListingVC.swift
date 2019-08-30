@@ -1,24 +1,19 @@
 //
-//  GAPlaylistDetailVC.swift
+//  GASongsListingVC.swift
 //  Gaana
 //
-//  Created by Pawan Agarwal on 26/08/19.
+//  Created by Pawan Agarwal on 30/08/19.
 //  Copyright © 2019 Pawan. All rights reserved.
 //
 
 import UIKit
 
-enum PlaylistDetailSection : Int {
-    case header
-    case listing
-}
-
-class GAPlaylistDetailVC: UIViewController {
+class GASongsListingVC: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    var viewModel : GASongsListingVM?
     private var playlistSections : [PlaylistDetailSection] = [.header,.listing]
-    var viewModel : GAPlaylistDetailVM?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         registerCells()
@@ -34,7 +29,7 @@ class GAPlaylistDetailVC: UIViewController {
 
 }
 
-extension GAPlaylistDetailVC : UITableViewDataSource, UITableViewDelegate {
+extension GASongsListingVC : UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return playlistSections.count
     }
@@ -70,11 +65,23 @@ extension GAPlaylistDetailVC : UITableViewDataSource, UITableViewDelegate {
         case .listing:
             if let cell = tableView.dequeueReusableCell(withIdentifier: "GAListingTableViewCell") as? GAListingTableViewCell {
                 if viewModel?.getFeeds().count ?? 0 > indexPath.row, let feedModel =  viewModel?.getFeeds()[indexPath.row] {
-                    cell.configure(feed: feedModel, indexPath: indexPath, type : .playlistListing)
+                    cell.configure(feed: feedModel, indexPath: indexPath, type : .songsListing)
+                    cell.delegate = self
                 }
                 return cell
             }
         }
         return UITableViewCell()
+    }
+}
+
+extension GASongsListingVC : GAListingCellAction {
+    func listingSelectedForType(type : ListingCellType) {
+        if type == ListingCellType.songsListing {
+            if let addToPlaylistVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GAAddToPlaylistVC") as? GAAddToPlaylistVC {
+                self.present(addToPlaylistVC, animated: true, completion: nil)
+            }
+        }
+        
     }
 }
