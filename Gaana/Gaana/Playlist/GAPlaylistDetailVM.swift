@@ -18,18 +18,18 @@ final class GAPlaylistDetailVM: NSObject {
         super.init()
     }
     
-    func getFeeds() -> [GAFeedModel] {
-        if let feedData = playlistModel?.playlistSongs {
-            return feedData
+    func getFeeds() -> [GASongModel] {
+        if let songData = playlistModel?.playlistSongs {
+            return songData
         }
-        return [GAFeedModel]()
+        return [GASongModel]()
     }
     
     func removeSongAtIndex(index :Int) {
-        if var feedData = playlistModel?.playlistSongs, feedData.count > index {
+        if var songData = playlistModel?.playlistSongs, songData.count > index {
             modelState = .updated
-            feedData.remove(at: index)
-            playlistModel?.playlistSongs = feedData
+            songData.remove(at: index)
+            playlistModel?.playlistSongs = songData
         }
     }
 }

@@ -74,6 +74,8 @@ final class GAPlaylistDetailVC: UIViewController {
 
 }
 
+// MARK: - TableView Data Source Delegates
+
 extension GAPlaylistDetailVC : UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return playlistSections.count
@@ -83,9 +85,6 @@ extension GAPlaylistDetailVC : UITableViewDataSource, UITableViewDelegate {
         let playlistSection = playlistSections[section]
         switch playlistSection {
         case .header:
-//            if viewModel?.getFeeds().count ?? 0 < 1 {
-//                return 0
-//            }
             return 1
         case .listing:
             return viewModel?.getFeeds().count ?? 0
@@ -112,8 +111,8 @@ extension GAPlaylistDetailVC : UITableViewDataSource, UITableViewDelegate {
             }
         case .listing:
             if let cell = tableView.dequeueReusableCell(withIdentifier: "GAListingTableViewCell") as? GAListingTableViewCell {
-                if viewModel?.getFeeds().count ?? 0 > indexPath.row, let feedModel =  viewModel?.getFeeds()[indexPath.row] {
-                    cell.configure(feed: feedModel, indexPath: indexPath, type : .playlistListing)
+                if viewModel?.getFeeds().count ?? 0 > indexPath.row, let songModel =  viewModel?.getFeeds()[indexPath.row] {
+                    cell.configure(song: songModel, indexPath: indexPath, type : .playlistListing)
                 }
                 return cell
             }

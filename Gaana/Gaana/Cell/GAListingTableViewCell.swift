@@ -52,14 +52,10 @@ class GAListingTableViewCell: UITableViewCell {
         resetCell()
         super.prepareForReuse()
     }
+    
     private func resetCell() {
         playlistImageView.image = nil
         playlistName.text = ""
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        // Configure the view for the selected state
     }
     
     func configure(playlist : GAPlaylistModel, indexPath : IndexPath, type:ListingCellType) {
@@ -77,12 +73,12 @@ class GAListingTableViewCell: UITableViewCell {
         })
     }
     
-    func configure(feed : GAFeedModel, indexPath : IndexPath, type:ListingCellType) {
-        self.playlistName.text = feed.name
-        let imageUrl = feed.imageUrl
+    func configure(song : GASongModel, indexPath : IndexPath, type:ListingCellType) {
+        self.playlistName.text = song.name
+        let imageUrl = song.imageUrl
         selectionButton.imageView?.image = UIImage.init(named: type.imageName)
         self.listingCellType = type
-        self.model = feed
+        self.model = song
         GACacheImageWrapper.sharedInstance.downloadImageWith(url: URL(string: imageUrl), indexPath: indexPath, completionHandler: {[weak self] (image, url, indexPathObj, error) in
             if let image = image, indexPath == indexPathObj {
                 self?.playlistImageView.image = image

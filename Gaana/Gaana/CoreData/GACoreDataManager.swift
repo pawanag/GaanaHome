@@ -10,8 +10,8 @@ import UIKit
 import CoreData
 
 enum GADBEntityType: String {
-    case playlist            =  "PlaylistModel"
-    case feed           = "FeedModel"
+    case playlist =  "PlaylistModel"
+    case song     = "SongModel"
 }
 
 final class GACoreDataManager:NSObject {
@@ -66,15 +66,15 @@ final class GACoreDataManager:NSObject {
 
 extension GACoreDataManager {
     
-    func addSongToNewPlaylist(name : String, song : GAFeedModel) {
+    func addSongToNewPlaylist(name : String, songModel : GASongModel) {
         let playlist:PlaylistModel? = NSEntityDescription.insertNewObject(forEntityName: GADBEntityType.playlist.rawValue, into: GACoreDataManager.sharedInstance.privateContext) as? PlaylistModel
         playlist?.name = name
-        
-        let feed:FeedModel? = NSEntityDescription.insertNewObject(forEntityName: GADBEntityType.feed.rawValue, into: GACoreDataManager.sharedInstance.privateContext) as? FeedModel
-        feed?.name = song.name ?? ""
-        feed?.imageUrl = song.imageUrl
-        feed?.itemId = song.itemId
-//        playlist?.addToFeeds(feed ?? GAFeedModel())
+
+        let songEntityModel:SongModel? = NSEntityDescription.insertNewObject(forEntityName: GADBEntityType.song.rawValue, into: GACoreDataManager.sharedInstance.privateContext) as? SongModel
+        songEntityModel?.name = songModel.name ?? ""
+        songEntityModel?.imageUrl = songModel.imageUrl
+        songEntityModel?.itemId = songModel.itemId
+//        playlist?.addToFeeds(song ?? GASongModel())
         saveContext()
     }
     
@@ -96,22 +96,22 @@ extension GACoreDataManager {
             print("Failed")
         }
         return [PlaylistModel]()
-        
+
     }
 
     
-    private func saveFeedModel(model : FeedModel) {
+    private func saveSongModel(model : SongModel) {
         
-        let feed:FeedModel? = NSEntityDescription.insertNewObject(forEntityName: GADBEntityType.feed.rawValue, into: GACoreDataManager.sharedInstance.privateContext) as? FeedModel
-        feed?.name = model.name ?? ""
-        feed?.imageUrl = model.imageUrl
-        feed?.itemId = model.itemId
+        let song:SongModel? = NSEntityDescription.insertNewObject(forEntityName: GADBEntityType.song.rawValue, into: GACoreDataManager.sharedInstance.privateContext) as? SongModel
+        song?.name = model.name ?? ""
+        song?.imageUrl = model.imageUrl
+        song?.itemId = model.itemId
         
         saveContext()
     }
     
     private func getData() {
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: GADBEntityType.feed.rawValue)
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: GADBEntityType.song.rawValue)
         //request.predicate = NSPredicate(format: "age = %@", "12")
         request.returnsObjectsAsFaults = false
         do {

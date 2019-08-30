@@ -16,7 +16,7 @@ class GAServiceHandler: NSObject {
         self.connectionHandler = connectionHandler
     }
     
-    func fetchHomeData(urlString : String, completion :@escaping (_ feedsArr : [GAHomeMainModel])-> Void) {
+    func fetchHomeData(urlString : String, completion :@escaping (_ songsArr : [GAHomeMainModel])-> Void) {
         guard let url = URL(string: urlString) else {
             completion([])
             return

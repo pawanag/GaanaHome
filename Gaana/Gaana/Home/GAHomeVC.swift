@@ -66,9 +66,9 @@ extension GAHomeVC : UITableViewDataSource, UITableViewDelegate {
 }
 
 extension GAHomeVC : GAHomeListingAction {
-    func seeAllTapped(feedData: [GAFeedModel]) {
+    func seeAllTapped(songData: [GASongModel]) {
         if let detailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GASongsListingVC") as? GASongsListingVC {
-            detailVC.viewModel = GASongsListingVM(feedData: feedData)
+            detailVC.viewModel = GASongsListingVM(songData: songData)
             self.navigationController?.pushViewController(detailVC, animated: true)
         }
         

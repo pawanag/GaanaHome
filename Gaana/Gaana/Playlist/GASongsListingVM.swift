@@ -10,17 +10,17 @@ import UIKit
 
 final class GASongsListingVM: NSObject {
     
-    private var feedData : [GAFeedModel]?
+    private var songData : [GASongModel]?
     
-    init(feedData : [GAFeedModel]) {
-        self.feedData = feedData
+    init(songData : [GASongModel]) {
+        self.songData = songData
         super.init()
     }
     
-    func getFeeds() -> [GAFeedModel] {
-        if let feedData = feedData {
-            return feedData
+    func getFeeds() -> [GASongModel] {
+        if let songData = songData {
+            return songData
         }
-        return [GAFeedModel]()
+        return [GASongModel]()
     }
 }

@@ -11,14 +11,14 @@ import UIKit
 final class GAAddToPlaylistVM {
 
     var playlistData = [GAPlaylistModel]()
-    var modelToBeSaved : GAFeedModel
+    var modelToBeSaved : GASongModel
     
-    init(modelToBeSaved : GAFeedModel) {
+    init(modelToBeSaved : GASongModel) {
         self.modelToBeSaved = modelToBeSaved
     }
     
     func addSongToNewPlaylist(name : String) {
-        GACoreDataManager.sharedInstance.addSongToNewPlaylist(name: name, song: modelToBeSaved)
+//        GACoreDataManager.sharedInstance.addSongToNewPlaylist(name: name, song: modelToBeSaved)
     }
     
 //    func getAllPlaylists() -> [GAPlaylistModel]? {
@@ -30,9 +30,9 @@ final class GAAddToPlaylistVM {
     func dummyData() {
         var playlist = GAPlaylistModel()
         playlist.playlistName = "test1"
-        let feedModel = GAFeedModel(imageUrl: "http://a10.gaanacdn.com/images/albums/72/2657072/crop_480x480_2657072.jpg", name: "SeÃ±orita", itemId: "27290114")
-        playlist.playlistSongs.append(feedModel)
-        playlist.playlistSongs.append(feedModel)
+        let songModel = GASongModel(imageUrl: "http://a10.gaanacdn.com/images/albums/72/2657072/crop_480x480_2657072.jpg", name: "SeÃ±orita", itemId: "27290114")
+        playlist.playlistSongs.append(songModel)
+        playlist.playlistSongs.append(songModel)
         playlistData.append(playlist)
     }
     func getPlaylists() -> [GAPlaylistModel] {
@@ -41,7 +41,7 @@ final class GAAddToPlaylistVM {
         if playlistData.count > 0 {
             return playlistData
         } else {
-            let playlist = GACoreDataManager.sharedInstance.getAllPlaylists()
+//            let playlist = GACoreDataManager.sharedInstance.getAllPlaylists()
             return playlistData
         }
     }
@@ -52,7 +52,7 @@ final class GAAddToPlaylistVM {
 ////        })
 //    }
     
-    func createPlaylist(name : String, song : GAFeedModel) {
+    func createPlaylist(name : String, song : GASongModel) {
         var playlistObj = GAPlaylistModel()
         playlistObj.playlistName = name
         playlistObj.playlistSongs.append(song)

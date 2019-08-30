@@ -54,6 +54,7 @@ final class GAPlaylistListingVC: UIViewController {
 
 }
 // MARK: - TableView Data Source Delegates
+
 extension GAPlaylistListingVC :UITableViewDataSource,UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.getPlaylists().count

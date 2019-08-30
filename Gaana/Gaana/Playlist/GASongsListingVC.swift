@@ -29,6 +29,8 @@ final class GASongsListingVC: UIViewController {
 
 }
 
+// MARK: - TableView Data Source Delegates
+
 extension GASongsListingVC : UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return playlistSections.count
@@ -64,8 +66,8 @@ extension GASongsListingVC : UITableViewDataSource, UITableViewDelegate {
             }
         case .listing:
             if let cell = tableView.dequeueReusableCell(withIdentifier: "GAListingTableViewCell") as? GAListingTableViewCell {
-                if viewModel?.getFeeds().count ?? 0 > indexPath.row, let feedModel =  viewModel?.getFeeds()[indexPath.row] {
-                    cell.configure(feed: feedModel, indexPath: indexPath, type : .songsListing)
+                if viewModel?.getFeeds().count ?? 0 > indexPath.row, let songModel =  viewModel?.getFeeds()[indexPath.row] {
+                    cell.configure(song: songModel, indexPath: indexPath, type : .songsListing)
                     cell.delegate = self
                 }
                 return cell
@@ -77,14 +79,13 @@ extension GASongsListingVC : UITableViewDataSource, UITableViewDelegate {
 
 extension GASongsListingVC : GAListingCellAction {
     func listingSelectedForType(type : ListingCellType, modelData : Any) {
-        if let feedModel = modelData as? GAFeedModel, type == ListingCellType.songsListing {
+        if let songModel = modelData as? GASongModel, type == ListingCellType.songsListing {
             if let addToPlaylistVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GAAddToPlaylistVC") as? GAAddToPlaylistVC {
-                let addToPlaylistVM = GAAddToPlaylistVM(modelToBeSaved: feedModel)
+                let addToPlaylistVM = GAAddToPlaylistVM(modelToBeSaved: songModel)
                 addToPlaylistVC.viewModel = addToPlaylistVM
                 self.present(addToPlaylistVC, animated: true, completion: nil)
             }
         }
-        
     }
     
 }

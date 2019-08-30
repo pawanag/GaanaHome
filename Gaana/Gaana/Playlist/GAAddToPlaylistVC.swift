@@ -67,6 +67,8 @@ final class GAAddToPlaylistVC: UIViewController {
     }
 }
 
+// MARK: - TableView Data Source Delegates
+
 extension GAAddToPlaylistVC : UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

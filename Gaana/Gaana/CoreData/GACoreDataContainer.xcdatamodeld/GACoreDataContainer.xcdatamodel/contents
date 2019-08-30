@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="19A471t" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="FeedModel" representedClassName="FeedModel" syncable="YES" codeGenerationType="class">
+    <entity name="PlaylistModel" representedClassName="PlaylistModel" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="songs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SongModel" inverseName="playlist" inverseEntity="SongModel" syncable="YES"/>
+    </entity>
+    <entity name="SongModel" representedClassName="SongModel" syncable="YES" codeGenerationType="class">
         <attribute name="imageUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="itemId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="playlist" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PlaylistModel" inverseName="feeds" inverseEntity="PlaylistModel" syncable="YES"/>
-    </entity>
-    <entity name="PlaylistModel" representedClassName="PlaylistModel" syncable="YES" codeGenerationType="class">
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="songs" optional="YES" attributeType="Transformable" syncable="YES"/>
-        <relationship name="feeds" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FeedModel" inverseName="playlist" inverseEntity="FeedModel" syncable="YES"/>
+        <relationship name="playlist" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PlaylistModel" inverseName="songs" inverseEntity="PlaylistModel" syncable="YES"/>
     </entity>
     <elements>
-        <element name="FeedModel" positionX="-312.69921875" positionY="3.29296875" width="128" height="103"/>
-        <element name="PlaylistModel" positionX="-692.64453125" positionY="-16.62109375" width="128" height="88"/>
+        <element name="SongModel" positionX="-312.69921875" positionY="3.29296875" width="128" height="103"/>
+        <element name="PlaylistModel" positionX="-692.64453125" positionY="-16.62109375" width="128" height="73"/>
     </elements>
 </model>

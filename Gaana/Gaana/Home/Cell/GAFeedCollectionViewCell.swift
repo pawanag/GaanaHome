@@ -14,7 +14,7 @@ class GAFeedCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var cellImageView: UIImageView!
 
     
-    func configure(model: GAFeedModel, indexPath: IndexPath){
+    func configure(model: GASongModel, indexPath: IndexPath){
         cellLabel.text = model.name
         cellImageView.image = nil
         if let url = URL(string: model.imageUrl ){

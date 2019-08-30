@@ -53,14 +53,14 @@ struct GAHomeModel : Decodable {
 
 struct GAHomeMainModel : Decodable {
     var name : String
-    var tracks : [GAFeedModel]
+    var tracks : [GASongModel]
     var viewType: GAViewType = .unknown
     enum CodingKeys: String, CodingKey {
         case name,tracks
     }
 }
 
-struct GAFeedModel : Codable {
+struct GASongModel : Codable {
     var imageUrl: String
     var name: String?
     var itemId : String
@@ -80,7 +80,7 @@ struct GAFeedModel : Codable {
 
 struct GAPlaylistModel {
     var playlistName : String!
-    var playlistSongs = [GAFeedModel]()
+    var playlistSongs = [GASongModel]()
     
 }
 

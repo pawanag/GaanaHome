@@ -15,25 +15,25 @@ final class GAPlaylistListingVM: NSObject {
     override init() {
         super.init()
 
-        GACoreDataManager.sharedInstance.getAllPlaylists()
+//        GACoreDataManager.sharedInstance.getAllPlaylists()
         dummyData()
     }
     func dummyData() {
         var playlist = GAPlaylistModel()
         playlist.playlistName = "test1"
-        let feedModel1 = GAFeedModel(imageUrl: "http://a10.gaanacdn.com/images/albums/72/2657072/crop_480x480_2657072.jpg", name: "SeÃ±orita", itemId: "27290114")
+        let songModel1 = GASongModel(imageUrl: "http://a10.gaanacdn.com/images/albums/72/2657072/crop_480x480_2657072.jpg", name: "SeÃ±orita", itemId: "27290114")
         
-        let feedModel4 = GAFeedModel(imageUrl: "http://a10.gaanacdn.com/images/albums/69/2437469/crop_480x480_2437469.jpg", name: "On My Way", itemId: "25658817")
+        let songModel4 = GASongModel(imageUrl: "http://a10.gaanacdn.com/images/albums/69/2437469/crop_480x480_2437469.jpg", name: "On My Way", itemId: "25658817")
 
-        playlist.playlistSongs.append(feedModel1)
-        playlist.playlistSongs.append(feedModel4)
+        playlist.playlistSongs.append(songModel1)
+        playlist.playlistSongs.append(songModel4)
         
         var playlist1 = GAPlaylistModel()
         playlist1.playlistName = "test2"
-        let feedModel2 = GAFeedModel(imageUrl: "http://a10.gaanacdn.com/images/albums/72/2657072/crop_480x480_2657072.jpg", name: "SeÃ±orita", itemId: "27290114")
-        let feedModel3 = GAFeedModel(imageUrl: "http://a10.gaanacdn.com/images/albums/69/2437469/crop_480x480_2437469.jpg", name: "On My Way", itemId: "25658817")
-        playlist1.playlistSongs.append(feedModel2)
-        playlist1.playlistSongs.append(feedModel3)
+        let songModel2 = GASongModel(imageUrl: "http://a10.gaanacdn.com/images/albums/72/2657072/crop_480x480_2657072.jpg", name: "SeÃ±orita", itemId: "27290114")
+        let songModel3 = GASongModel(imageUrl: "http://a10.gaanacdn.com/images/albums/69/2437469/crop_480x480_2437469.jpg", name: "On My Way", itemId: "25658817")
+        playlist1.playlistSongs.append(songModel2)
+        playlist1.playlistSongs.append(songModel3)
         
         playlistData.append(playlist)
         playlistData.append(playlist1)
@@ -50,7 +50,7 @@ final class GAPlaylistListingVM: NSObject {
         persistPlaylist()
     }
     
-    func createPlaylist(name : String, song : GAFeedModel) {
+    func createPlaylist(name : String, song : GASongModel) {
         var playlistObj = GAPlaylistModel()
         playlistObj.playlistName = name
         playlistObj.playlistSongs.append(song)
