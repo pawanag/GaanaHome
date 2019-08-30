@@ -28,6 +28,10 @@
 		43A9DCDD23190DA000A5A9BE /* GASongsListingVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A9DCDC23190DA000A5A9BE /* GASongsListingVM.swift */; };
 		43A9DCDF23191CB000A5A9BE /* GAAddToPlaylistVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A9DCDE23191CB000A5A9BE /* GAAddToPlaylistVC.swift */; };
 		43A9DCE123191CFB00A5A9BE /* GAAddToPlaylistVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A9DCE023191CFB00A5A9BE /* GAAddToPlaylistVM.swift */; };
+		43A9DCE423194B5800A5A9BE /* GACoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A9DCE323194B5800A5A9BE /* GACoreDataManager.swift */; };
+		43A9DCE523194B5800A5A9BE /* GACoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A9DCE323194B5800A5A9BE /* GACoreDataManager.swift */; };
+		43A9DCE823194B7400A5A9BE /* GACoreDataContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 43A9DCE623194B7400A5A9BE /* GACoreDataContainer.xcdatamodeld */; };
+		43A9DCE923194B7400A5A9BE /* GACoreDataContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 43A9DCE623194B7400A5A9BE /* GACoreDataContainer.xcdatamodeld */; };
 		43B73B992313780E00DF3CB2 /* GAPlaylistListingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B73B982313780E00DF3CB2 /* GAPlaylistListingVC.swift */; };
 		43B73B9B231378A800DF3CB2 /* GAPlaylistListingVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B73B9A231378A800DF3CB2 /* GAPlaylistListingVM.swift */; };
 		43B73B9D23137AEF00DF3CB2 /* GAPlaylistDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B73B9C23137AEF00DF3CB2 /* GAPlaylistDetailVC.swift */; };
@@ -76,6 +80,8 @@
 		43A9DCDC23190DA000A5A9BE /* GASongsListingVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GASongsListingVM.swift; sourceTree = "<group>"; };
 		43A9DCDE23191CB000A5A9BE /* GAAddToPlaylistVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GAAddToPlaylistVC.swift; sourceTree = "<group>"; };
 		43A9DCE023191CFB00A5A9BE /* GAAddToPlaylistVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GAAddToPlaylistVM.swift; sourceTree = "<group>"; };
+		43A9DCE323194B5800A5A9BE /* GACoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GACoreDataManager.swift; sourceTree = "<group>"; };
+		43A9DCE723194B7400A5A9BE /* GACoreDataContainer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GACoreDataContainer.xcdatamodel; sourceTree = "<group>"; };
 		43B73B982313780E00DF3CB2 /* GAPlaylistListingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GAPlaylistListingVC.swift; sourceTree = "<group>"; };
 		43B73B9A231378A800DF3CB2 /* GAPlaylistListingVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GAPlaylistListingVM.swift; sourceTree = "<group>"; };
 		43B73B9C23137AEF00DF3CB2 /* GAPlaylistDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GAPlaylistDetailVC.swift; sourceTree = "<group>"; };
@@ -110,13 +116,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		434D87A423116CE600F1DE59 = {
+		4321F3A02319675A0020ABEF /* Cell */ = {
 			isa = PBXGroup;
 			children = (
 				43A9DCD62319016F00A5A9BE /* GAHeaderTableViewCell.swift */,
 				43A9DCD72319016F00A5A9BE /* GAHeaderTableViewCell.xib */,
 				435AA8DF2318FCB500F2A642 /* GAListingTableViewCell.swift */,
 				435AA8E02318FCB500F2A642 /* GAListingTableViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		4321F3A12319676E0020ABEF /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				434D87B223116CE600F1DE59 /* GAHomeVC.swift */,
+				434D87C223116D5800F1DE59 /* GAHomeVM.swift */,
+				4321F3A2231967A70020ABEF /* Cell */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		4321F3A2231967A70020ABEF /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				434D87D123118BF700F1DE59 /* GAFeedTableViewCell.swift */,
+				434D87D32311B6C700F1DE59 /* GAFeedCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		434D87A423116CE600F1DE59 = {
+			isa = PBXGroup;
+			children = (
 				434D87AF23116CE600F1DE59 /* Gaana */,
 				43EB24B32312BAA10061472C /* GaanaTests */,
 				434D87AE23116CE600F1DE59 /* Products */,
@@ -135,20 +167,17 @@
 		434D87AF23116CE600F1DE59 /* Gaana */ = {
 			isa = PBXGroup;
 			children = (
+				43A9DCE223194B4200A5A9BE /* CoreData */,
 				43B73B97231377DF00DF3CB2 /* Playlist */,
 				434D87C62311727200F1DE59 /* Network */,
-				434D87B023116CE600F1DE59 /* AppDelegate.swift */,
+				4321F3A02319675A0020ABEF /* Cell */,
 				434D87B423116CE600F1DE59 /* Main.storyboard */,
 				434D87B723116CE800F1DE59 /* Assets.xcassets */,
 				434D87B923116CE800F1DE59 /* LaunchScreen.storyboard */,
 				434D87BC23116CE800F1DE59 /* Info.plist */,
-				434D87B223116CE600F1DE59 /* GAHomeVC.swift */,
-				434D87C223116D5800F1DE59 /* GAHomeVM.swift */,
+				4321F3A12319676E0020ABEF /* Home */,
 				434D87C423116DF100F1DE59 /* GAHomeMainModel.swift */,
-				434D87D123118BF700F1DE59 /* GAFeedTableViewCell.swift */,
-				434D87D32311B6C700F1DE59 /* GAFeedCollectionViewCell.swift */,
-				43A9DCDA23190C9A00A5A9BE /* GASongsListingVC.swift */,
-				43A9DCDC23190DA000A5A9BE /* GASongsListingVM.swift */,
+				434D87B023116CE600F1DE59 /* AppDelegate.swift */,
 			);
 			path = Gaana;
 			sourceTree = "<group>";
@@ -167,6 +196,15 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		43A9DCE223194B4200A5A9BE /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				43A9DCE323194B5800A5A9BE /* GACoreDataManager.swift */,
+				43A9DCE623194B7400A5A9BE /* GACoreDataContainer.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		43B73B97231377DF00DF3CB2 /* Playlist */ = {
 			isa = PBXGroup;
 			children = (
@@ -176,6 +214,8 @@
 				43B73B9E23137B0700DF3CB2 /* GAPlaylistDetailVM.swift */,
 				43A9DCDE23191CB000A5A9BE /* GAAddToPlaylistVC.swift */,
 				43A9DCE023191CFB00A5A9BE /* GAAddToPlaylistVM.swift */,
+				43A9DCDA23190C9A00A5A9BE /* GASongsListingVC.swift */,
+				43A9DCDC23190DA000A5A9BE /* GASongsListingVM.swift */,
 			);
 			path = Playlist;
 			sourceTree = "<group>";
@@ -322,6 +362,7 @@
 				434D87B323116CE600F1DE59 /* GAHomeVC.swift in Sources */,
 				43A9DCDB23190C9A00A5A9BE /* GASongsListingVC.swift in Sources */,
 				434D87CC231173E800F1DE59 /* GAUtility.swift in Sources */,
+				43A9DCE423194B5800A5A9BE /* GACoreDataManager.swift in Sources */,
 				434D87B123116CE600F1DE59 /* AppDelegate.swift in Sources */,
 				43B73B992313780E00DF3CB2 /* GAPlaylistListingVC.swift in Sources */,
 				43B73B9B231378A800DF3CB2 /* GAPlaylistListingVM.swift in Sources */,
@@ -335,6 +376,7 @@
 				43EB24A82312AF490061472C /* GAImageDownloadOperation.swift in Sources */,
 				43A9DCE123191CFB00A5A9BE /* GAAddToPlaylistVM.swift in Sources */,
 				434D87D223118BF700F1DE59 /* GAFeedTableViewCell.swift in Sources */,
+				43A9DCE823194B7400A5A9BE /* GACoreDataContainer.xcdatamodeld in Sources */,
 				434D87C82311728A00F1DE59 /* GANetworkRegistrar.swift in Sources */,
 				435AA8E12318FCB500F2A642 /* GAListingTableViewCell.swift in Sources */,
 			);
@@ -344,7 +386,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43A9DCE523194B5800A5A9BE /* GACoreDataManager.swift in Sources */,
 				43EB24B52312BAA10061472C /* GaanaTests.swift in Sources */,
+				43A9DCE923194B7400A5A9BE /* GACoreDataContainer.xcdatamodeld in Sources */,
 				43EB24BE2312BBD80061472C /* GAMockConnectionRegistrar.swift in Sources */,
 				43EB24C02312BC650061472C /* GATestUtility.swift in Sources */,
 			);
@@ -603,6 +647,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		43A9DCE623194B7400A5A9BE /* GACoreDataContainer.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				43A9DCE723194B7400A5A9BE /* GACoreDataContainer.xcdatamodel */,
+			);
+			currentVersion = 43A9DCE723194B7400A5A9BE /* GACoreDataContainer.xcdatamodel */;
+			path = GACoreDataContainer.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 434D87A523116CE600F1DE59 /* Project object */;
 }

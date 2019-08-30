@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GASongsListingVM: NSObject {
+final class GASongsListingVM: NSObject {
     
     private var feedData : [GAFeedModel]?
     

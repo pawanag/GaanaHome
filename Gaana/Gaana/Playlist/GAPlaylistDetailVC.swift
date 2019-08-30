@@ -8,16 +8,27 @@
 
 import UIKit
 
+enum GAPlaylistUpdatedState {
+    case deleted
+    case updated
+    case none
+}
+
+protocol GADetailListingProtocol : class {
+    func updateModel(playlistModel:GAPlaylistModel, state : GAPlaylistUpdatedState)
+}
+
 enum PlaylistDetailSection : Int {
     case header
     case listing
 }
 
-class GAPlaylistDetailVC: UIViewController {
+final class GAPlaylistDetailVC: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     private var playlistSections : [PlaylistDetailSection] = [.header,.listing]
     var viewModel : GAPlaylistDetailVM?
+    weak var delegate : GADetailListingProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,11 +36,40 @@ class GAPlaylistDetailVC: UIViewController {
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableView.automaticDimension
         tableView.tableFooterView = UIView()
+        tableView.allowsMultipleSelectionDuringEditing = false
+        let add = UIBarButtonItem(image: UIImage(named: "delete"), style: .plain, target: self, action: #selector(deleteTapped))
+        self.navigationItem.rightBarButtonItem = add
     }
     
     private func registerCells() {
         self.tableView.register(UINib(nibName: "GAHeaderTableViewCell", bundle: nil), forCellReuseIdentifier: "GAHeaderTableViewCell")
         self.tableView.register(UINib(nibName: "GAListingTableViewCell", bundle: nil), forCellReuseIdentifier: "GAListingTableViewCell")
+    }
+    
+    @objc func deleteTapped() {
+        
+        let alertController = UIAlertController(title: viewModel?.playlistModel?.playlistName ?? "", message: "Do you want to delete this playlist?", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .default, handler: {[weak self] alert -> Void in
+            self?.viewModel?.modelState = .deleted
+            self?.navigationController?.popViewController(animated: true)
+            // Delete Playlist
+        })
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: {
+            (action : UIAlertAction!) -> Void in })
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(okAction)
+        alertController.preferredAction = okAction
+        
+        self.present(alertController, animated: true, completion: nil)
+        // Sure to delete Playlist
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        if let playlistModel = viewModel?.playlistModel, let state =  viewModel?.modelState{
+            self.delegate?.updateModel(playlistModel: playlistModel, state: state)
+        }
+        super.viewWillDisappear(animated)
     }
 
 }
@@ -43,6 +83,9 @@ extension GAPlaylistDetailVC : UITableViewDataSource, UITableViewDelegate {
         let playlistSection = playlistSections[section]
         switch playlistSection {
         case .header:
+//            if viewModel?.getFeeds().count ?? 0 < 1 {
+//                return 0
+//            }
             return 1
         case .listing:
             return viewModel?.getFeeds().count ?? 0
@@ -77,4 +120,26 @@ extension GAPlaylistDetailVC : UITableViewDataSource, UITableViewDelegate {
         }
         return UITableViewCell()
     }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        let playlistSection = playlistSections[indexPath.section]
+        switch playlistSection {
+        case .header:
+            return false
+        default:
+                return true
+        }
+    }
+
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            viewModel?.removeSongAtIndex(index:indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.reloadData()
+        } else if editingStyle == .insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+        }
+    }
+    
 }

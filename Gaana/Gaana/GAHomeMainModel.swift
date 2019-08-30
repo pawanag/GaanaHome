@@ -42,7 +42,7 @@ enum GAViewType: Int{
     }
 }
 
-class GAHomeModel : Decodable {
+struct GAHomeModel : Decodable {
     var status : Int
     var sections : [GAHomeMainModel]
     enum CodingKeys: String, CodingKey {
@@ -51,7 +51,7 @@ class GAHomeModel : Decodable {
     }
 }
 
-class GAHomeMainModel : Decodable {
+struct GAHomeMainModel : Decodable {
     var name : String
     var tracks : [GAFeedModel]
     var viewType: GAViewType = .unknown
@@ -60,7 +60,7 @@ class GAHomeMainModel : Decodable {
     }
 }
 
-class GAFeedModel : Codable {
+struct GAFeedModel : Codable {
     var imageUrl: String
     var name: String?
     var itemId : String
@@ -78,8 +78,9 @@ class GAFeedModel : Codable {
     }
 }
 
-class GAPlaylistModel {
+struct GAPlaylistModel {
     var playlistName : String!
     var playlistSongs = [GAFeedModel]()
+    
 }
 

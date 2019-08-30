@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GASongsListingVC: UIViewController {
+final class GASongsListingVC: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     var viewModel : GASongsListingVM?
@@ -76,12 +76,15 @@ extension GASongsListingVC : UITableViewDataSource, UITableViewDelegate {
 }
 
 extension GASongsListingVC : GAListingCellAction {
-    func listingSelectedForType(type : ListingCellType) {
-        if type == ListingCellType.songsListing {
+    func listingSelectedForType(type : ListingCellType, modelData : Any) {
+        if let feedModel = modelData as? GAFeedModel, type == ListingCellType.songsListing {
             if let addToPlaylistVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GAAddToPlaylistVC") as? GAAddToPlaylistVC {
+                let addToPlaylistVM = GAAddToPlaylistVM(modelToBeSaved: feedModel)
+                addToPlaylistVC.viewModel = addToPlaylistVM
                 self.present(addToPlaylistVC, animated: true, completion: nil)
             }
         }
         
     }
+    
 }

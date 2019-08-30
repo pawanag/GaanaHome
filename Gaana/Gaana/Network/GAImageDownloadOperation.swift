@@ -30,7 +30,6 @@ class GAImageDownloadOperation : GAAsyncOperation {
     func downloadImageFromUrl() {
         let newSession = URLSession.shared
         let downloadTask = newSession.downloadTask(with: imageUrl) { (location, response, error) in
-            debugPrint("row \(self.indexPath.row) && error = \(error?.localizedDescription)")
             if let locationUrl = location, let data = try? Data(contentsOf: locationUrl){
                 let image = UIImage(data: data)
                 self.downloadHandler?(image,self.imageUrl, self.indexPath,error)

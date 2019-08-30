@@ -8,20 +8,29 @@
 
 import UIKit
 
-class GAPlaylistDetailVM: NSObject {
+final class GAPlaylistDetailVM: NSObject {
 
-    private var feedData : [GAFeedModel]?
+    var playlistModel : GAPlaylistModel?
+    var modelState : GAPlaylistUpdatedState = .none
     
-    init(feedData : [GAFeedModel]) {
-        self.feedData = feedData
+    init(playlistModel : GAPlaylistModel) {
+        self.playlistModel = playlistModel
         super.init()
     }
     
     func getFeeds() -> [GAFeedModel] {
-        if let feedData = feedData {
+        if let feedData = playlistModel?.playlistSongs {
             return feedData
         }
         return [GAFeedModel]()
+    }
+    
+    func removeSongAtIndex(index :Int) {
+        if var feedData = playlistModel?.playlistSongs, feedData.count > index {
+            modelState = .updated
+            feedData.remove(at: index)
+            playlistModel?.playlistSongs = feedData
+        }
     }
 }
 

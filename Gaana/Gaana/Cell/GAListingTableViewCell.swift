@@ -10,7 +10,7 @@ import UIKit
 import Foundation
 
 protocol GAListingCellAction : class {
-    func listingSelectedForType(type : ListingCellType)
+    func listingSelectedForType(type : ListingCellType, modelData : Any)
 }
 
 enum ListingCellType {
@@ -41,7 +41,8 @@ class GAListingTableViewCell: UITableViewCell {
     @IBOutlet weak var tableView: UITableView!
     private var listingCellType : ListingCellType = .none
     weak var delegate : GAListingCellAction?
-    
+    var model : Any?
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -65,6 +66,7 @@ class GAListingTableViewCell: UITableViewCell {
         self.playlistName.text = playlist.playlistName
         selectionButton.imageView?.image = UIImage.init(named: type.imageName)
         self.listingCellType = type
+        self.model = playlist
         guard let imageUrl = playlist.playlistSongs.first?.imageUrl else {
             return
         }
@@ -80,6 +82,7 @@ class GAListingTableViewCell: UITableViewCell {
         let imageUrl = feed.imageUrl
         selectionButton.imageView?.image = UIImage.init(named: type.imageName)
         self.listingCellType = type
+        self.model = feed
         GACacheImageWrapper.sharedInstance.downloadImageWith(url: URL(string: imageUrl), indexPath: indexPath, completionHandler: {[weak self] (image, url, indexPathObj, error) in
             if let image = image, indexPath == indexPathObj {
                 self?.playlistImageView.image = image
@@ -87,8 +90,9 @@ class GAListingTableViewCell: UITableViewCell {
         })
     }
     @IBAction func selectionButtonTapped(_ sender: UIButton) {
-        self.delegate?.listingSelectedForType(type: listingCellType)
         
+        self.delegate?.listingSelectedForType(type: listingCellType, modelData : model!)
+
 //        switch listingCellType {
 //        case .songsListing:
 //            break

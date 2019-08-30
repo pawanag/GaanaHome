@@ -34,11 +34,11 @@
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Al0-GJ-lZB">
                         <rect key="frame" x="270" y="27.5" width="30" height="30"/>
+                        <color key="backgroundColor" red="0.38468601540000003" green="1" blue="0.41926077490000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="5VD-9i-zOK"/>
                             <constraint firstAttribute="width" constant="30" id="Fmh-PD-9p8"/>
                         </constraints>
-                        <state key="normal" image="addToPlaylist"/>
                         <connections>
                             <action selector="selectionButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="rTe-iM-6l5"/>
                         </connections>
@@ -50,7 +50,7 @@
                     <constraint firstItem="S3x-rv-i0N" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="RV3-22-Pi1"/>
                     <constraint firstItem="5iP-Hn-WrA" firstAttribute="leading" secondItem="S3x-rv-i0N" secondAttribute="trailing" constant="13" id="S5k-4Q-bVF"/>
                     <constraint firstItem="5iP-Hn-WrA" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="S8L-ow-lN1"/>
-                    <constraint firstAttribute="bottom" secondItem="S3x-rv-i0N" secondAttribute="bottom" constant="9.5" id="TRC-2B-wMz"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="S3x-rv-i0N" secondAttribute="bottom" constant="9.5" id="TRC-2B-wMz"/>
                     <constraint firstItem="Al0-GJ-lZB" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="5iP-Hn-WrA" secondAttribute="trailing" constant="20" id="poI-g3-w55"/>
                     <constraint firstAttribute="trailing" secondItem="Al0-GJ-lZB" secondAttribute="trailing" constant="20" id="uWC-l3-FWT"/>
                 </constraints>
@@ -64,7 +64,4 @@
             <point key="canvasLocation" x="-51.200000000000003" y="149.77511244377811"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="addToPlaylist" width="24" height="24"/>
-    </resources>
 </document>

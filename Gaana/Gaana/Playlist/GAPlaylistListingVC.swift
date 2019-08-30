@@ -9,7 +9,7 @@
 import UIKit
 
 
-class GAPlaylistListingVC: UIViewController {
+final class GAPlaylistListingVC: UIViewController {
 
     private let viewModel = GAPlaylistListingVM()
     @IBOutlet weak var tableView : UITableView!
@@ -20,23 +20,40 @@ class GAPlaylistListingVC: UIViewController {
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableView.automaticDimension
         tableView.tableFooterView = UIView()
-        
-        let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
+        let add = UIBarButtonItem(image: UIImage(named: "add"), style: .plain, target: self, action: #selector(addTapped))
         self.navigationItem.rightBarButtonItem = add
-       // navigationItem.rightBarButtonItems = [add]
-        
-        // Do any additional setup after loading the view.
     }
     
-    @objc func addTapped() {
+    @objc private func addTapped() {
+        let alertController = UIAlertController(title: "New Playlist Name", message: "Enter a playlist name", preferredStyle: .alert)
+        alertController.addTextField { (textField : UITextField!) -> Void in
+            textField.placeholder = "Playlist name"
+        }
+        let saveAction = UIAlertAction(title: "Save", style: .default, handler: {[weak self] alert -> Void in
+            if let textField = alertController.textFields?[0], let text = textField.text {
+                if text.count > 0 {
+                    self?.viewModel.createPlaylist(name:text)
+                    self?.tableView.reloadData()
+                }
+            }
+        })
         
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: {
+            (action : UIAlertAction!) -> Void in })
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(saveAction)
+        alertController.preferredAction = saveAction
+        
+        self.present(alertController, animated: true, completion: nil)
     }
+    
     private func registerCells() {
         self.tableView.register(UINib(nibName: "GAListingTableViewCell", bundle: nil), forCellReuseIdentifier: "GAListingTableViewCell")
     }
 
 }
-
+// MARK: - TableView Data Source Delegates
 extension GAPlaylistListingVC :UITableViewDataSource,UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.getPlaylists().count
@@ -56,10 +73,20 @@ extension GAPlaylistListingVC :UITableViewDataSource,UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if viewModel.getPlaylists().count > indexPath.row {
             if let detailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GAPlaylistDetailVC") as? GAPlaylistDetailVC {
-                detailVC.viewModel = GAPlaylistDetailVM(feedData: viewModel.getPlaylists()[indexPath.row].playlistSongs)
+                detailVC.viewModel = GAPlaylistDetailVM(playlistModel: viewModel.getPlaylists()[indexPath.row])
+                detailVC.delegate = self
                 self.navigationController?.pushViewController(detailVC, animated: true)
             }
 
         }
+        
+    }
+    
+}
+
+extension GAPlaylistListingVC : GADetailListingProtocol {
+    func updateModel(playlistModel:GAPlaylistModel, state : GAPlaylistUpdatedState) {
+        viewModel.updatePlaylist(playlistModel: playlistModel, state: state)
+        self.tableView.reloadData()
     }
 }
