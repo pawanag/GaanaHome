@@ -13,7 +13,7 @@ enum GAHViewModelAction : Int {
     case reloadData
 }
 
-class GAHomeVM: NSObject {
+final class GAHomeVM: NSObject {
     
     var numberOfRows : Int?
     var modelData = [GAHomeMainModel]()

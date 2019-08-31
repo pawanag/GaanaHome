@@ -70,20 +70,10 @@ enum GAViewType: Int{
     }
 }
 
-struct GAHomeModel {
-    var status : Int
-    var sections : [GAHomeMainModel]
-    enum CodingKeys: String, CodingKey {
-        case status
-        case sections = "sections"
-    }
-}
-
 struct GAHomeMainModel {
     var name : String
     var tracks = [GASongModel]()
     var viewType: GAViewType = .unknown
-    
     
         init(modelDict : [String: Any]) {
             name = modelDict[GAConstants.ModelKeys.Name] as? String ?? ""

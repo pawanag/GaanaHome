@@ -100,7 +100,7 @@ extension GACoreDataManager {
         }
         return saveContext()
     }
-
+    // Add song to Selected Playlists
     @discardableResult
     func addSongToPlaylists(playlists : [GAPlaylistModel], songModel : GASongModel) -> Error? {
         if let song = getSongFor(songModel: songModel) {
@@ -114,6 +114,7 @@ extension GACoreDataManager {
         return saveContext()
     }
 
+    // Deletes the Playlist
     @discardableResult
     func removePlaylist(name : String) -> Error? {
         if let result = getPlaylist(withName: name) {
@@ -122,6 +123,7 @@ extension GACoreDataManager {
         return saveContext()
     }
 
+    // Returns Song Model 
     func getSongFor(songModel: GASongModel) -> GASongModel? {
         var song: GASongModel?
 

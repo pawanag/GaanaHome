@@ -25,7 +25,7 @@ class GAServiceHandler: NSObject {
         connectionHandler.initRequest(request: urlRequest, withSuccess: { (data, response) in
             //
             do {
-                if let dataResp = data, let jsonData = try? JSONSerialization.jsonObject(with: dataResp, options: .allowFragments) as? [String : Any]{
+                if let dataResp = data, let jsonData = ((try? JSONSerialization.jsonObject(with: dataResp, options: .allowFragments) as? [String : Any]) as [String : Any]??){
                     //append feed array and return
                     if let feedArr = jsonData?["sections"] as? [[String : Any]]{
                         var mainModels = [GAHomeMainModel]()

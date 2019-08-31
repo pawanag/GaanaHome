@@ -17,7 +17,7 @@ final class GAAddToPlaylistVM {
     init(modelToBeSaved : GASongModel) {
         self.modelToBeSaved = modelToBeSaved
     }
-    
+    // Add Song to Newly created Playlist
     func addSongToNewPlaylist(name : String) -> Error? {
         var error = GACoreDataManager.sharedInstance.addSongToNewPlaylist(name: name, songModel: modelToBeSaved)
         if error == nil {
@@ -27,6 +27,7 @@ final class GAAddToPlaylistVM {
         return error
     }
 
+    // Add Songs to All the selected Playlists
     func addSongsToSelectedPlaylists() -> Error? {
         if selectedIndexes.count > 0 {
             var playLists = [GAPlaylistModel]()

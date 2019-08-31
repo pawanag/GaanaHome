@@ -23,13 +23,13 @@ final class GAPlaylistDetailVM: NSObject {
         }
         return [GASongModel]()
     }
-    
+    // Deleting Playlist
     func deletePlaylist() {
         if let name = playlistModel?.name {
             GACoreDataManager.sharedInstance.removePlaylist(name: name)
         }
     }
-    
+    // Deleting the selected song from Playlist
     func removeSongAtIndex(index :Int) {
         if var songData = playlistModel?.songs?.allObjects as? [GASongModel], songData.count > index {
             let song = songData.remove(at: index)

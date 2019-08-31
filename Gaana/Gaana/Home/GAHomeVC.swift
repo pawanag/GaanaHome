@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GAHomeVC: UIViewController {
+final class GAHomeVC: UIViewController {
 
     private let viewModel = GAHomeVM()
     @IBOutlet weak var tableView : UITableView!
