@@ -20,16 +20,24 @@ extension GASongModel {
     @NSManaged public var imageUrl: String?
     @NSManaged public var itemId: String?
     @NSManaged public var name: String?
-    @NSManaged public var playlist: GAPlaylistModel?
+    @NSManaged public var addedOn: NSDate?
+    @NSManaged public var playlist: NSSet?
 
 }
 
+// MARK: Generated accessors for playlist
 extension GASongModel {
-    convenience init(modelDict : [String : Any]) {
-        self.init(context: GACoreDataManager.sharedInstance.persistentContainer.viewContext)
-        name = modelDict["name"] as? String
-        imageUrl = modelDict["atw"] as? String ?? ""
-        itemId = modelDict["itemId"] as? String ?? ""
-    }
-    
+
+    @objc(addPlaylistObject:)
+    @NSManaged public func addToPlaylist(_ value: GAPlaylistModel)
+
+    @objc(removePlaylistObject:)
+    @NSManaged public func removeFromPlaylist(_ value: GAPlaylistModel)
+
+    @objc(addPlaylist:)
+    @NSManaged public func addToPlaylist(_ values: NSSet)
+
+    @objc(removePlaylist:)
+    @NSManaged public func removeFromPlaylist(_ values: NSSet)
+
 }

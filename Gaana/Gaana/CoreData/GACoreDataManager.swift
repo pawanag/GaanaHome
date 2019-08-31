@@ -47,118 +47,158 @@ final class GACoreDataManager:NSObject {
     
     // MARK: - Core Data stack
     lazy var persistentContainer: NSPersistentContainer = {
-        
+
         let container = NSPersistentContainer(name: "GACoreDataContainer")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
-//            self.persistentContainer.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
-//            self.persistentContainer.viewContext.undoManager = nil
-//            self.persistentContainer.viewContext.shouldDeleteInaccessibleFaults = true
-
+            self.persistentContainer.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         })
         return container
     }()
     
     
     lazy var privateContext:NSManagedObjectContext  = persistentContainer.newBackgroundContext()
-    
+    lazy var dummyContext:NSManagedObjectContext  = persistentContainer.newBackgroundContext()
+
     // MARK: - Core Data Saving
-    func saveContext () {
+    func saveContext () -> Error?{
         //To save private context changes
         if privateContext.hasChanges{
             do{
                 try privateContext.save()
             }catch{
-                debugPrint(error.localizedDescription)
+                return error
             }
         }
-        
         //To save main context changes
         let context = persistentContainer.viewContext
         if context.hasChanges {
             do {
                 try context.save()
             } catch {
-                debugPrint(error.localizedDescription)
+                return error
             }
         }
+        return nil
     }
-    
-    func documentDirectoryPath()->String{
-        let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
-        return paths[0]
-    }
-    
 }
 
 extension GACoreDataManager {
-    
-    func addSongToNewPlaylist(name : String, songModel : GASongModel) {
-        let playlist:GAPlaylistModel? = NSEntityDescription.insertNewObject(forEntityName: GADBEntityType.playlist.rawValue, into: GACoreDataManager.sharedInstance.privateContext) as? GAPlaylistModel
-        playlist?.name = name
-        
-        let songEntityModel:GASongModel? = NSEntityDescription.insertNewObject(forEntityName: GADBEntityType.song.rawValue, into: GACoreDataManager.sharedInstance.privateContext) as? GASongModel
-        songEntityModel?.name = songModel.name ?? ""
-        songEntityModel?.imageUrl = songModel.imageUrl
-        songEntityModel?.itemId = songModel.itemId
+    @discardableResult
+    func addSongToNewPlaylist(name : String, songModel : GASongModel) -> Error? {
+        let playlist:GAPlaylistModel? = getPlaylist(withName: name)
+
+        let songEntityModel:GASongModel? = self.getSongFor(songModel: songModel)
         if let entityModel = songEntityModel {
             playlist?.addToSongs(entityModel )
-        }
-        saveContext()
-    }
-    
-    func addSongToPlaylists(playlists : [GAPlaylistModel], songModel : GASongModel) {
-        //TODO
-    }
-    func removePlaylist(name : String) {
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: GADBEntityType.playlist.rawValue)
-        fetchRequest.predicate = NSPredicate(format: "name = %@", name)
-        
-        if let result = try? GACoreDataManager.sharedInstance.persistentContainer.viewContext.fetch(fetchRequest) {
-            for object in result {
-                GACoreDataManager.sharedInstance.persistentContainer.viewContext.delete(object as! NSManagedObject)
+        } else {
+            if let playlist = playlist {
+                getSongFor(songModel: songModel)?.addToPlaylist(playlist)
             }
         }
-        saveContext()
+        return saveContext()
     }
-    func updatePlaylist(name : String,songModel : GASongModel) {
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: GADBEntityType.playlist.rawValue)
-        request.predicate = NSPredicate(format: "name = %@", name)
-        
-        if let result = try? GACoreDataManager.sharedInstance.persistentContainer.viewContext.fetch(request), let resultFetched = result as? [GAPlaylistModel], let songs = resultFetched[0].songs?.allObjects as? [GASongModel]{
-            for song in songs {
-                if song.itemId == songModel.itemId {
-                    GACoreDataManager.sharedInstance.persistentContainer.viewContext.delete(song as NSManagedObject)
+
+    @discardableResult
+    func addSongToPlaylists(playlists : [GAPlaylistModel], songModel : GASongModel) -> Error? {
+        if let song = getSongFor(songModel: songModel) {
+            for playlist in playlists {
+                if let name = playlist.name, name.isEmpty == false {
+                    getPlaylist(withName: name)?.addToSongs(song)
                 }
             }
         }
-        saveContext()
+
+        return saveContext()
+    }
+
+    @discardableResult
+    func removePlaylist(name : String) -> Error? {
+        if let result = getPlaylist(withName: name) {
+            GACoreDataManager.sharedInstance.privateContext.delete(result)
+        }
+        return saveContext()
+    }
+
+    func getSongFor(songModel: GASongModel) -> GASongModel? {
+        var song: GASongModel?
+
+        if songModel.managedObjectContext == GACoreDataManager.sharedInstance.privateContext {
+            song = songModel
+        } else {
+            if let itemId = songModel.itemId {
+                let request = NSFetchRequest<GASongModel>(entityName: GADBEntityType.song.rawValue)
+                request.predicate = NSPredicate(format: "itemId = %@", itemId)
+                if let result = try? GACoreDataManager.sharedInstance.privateContext.fetch(request), result.count > 0{
+                    song = result[0]
+                } else {
+                    let songEntityModel:GASongModel? = NSEntityDescription.insertNewObject(forEntityName: GADBEntityType.song.rawValue, into: GACoreDataManager.sharedInstance.privateContext) as? GASongModel
+                    songEntityModel?.name = songModel.name ?? ""
+                    songEntityModel?.imageUrl = songModel.imageUrl
+                    songEntityModel?.itemId = songModel.itemId
+                    songEntityModel?.addedOn = NSDate()
+                    song = songEntityModel
+                }
+            }
+        }
+        return song
     }
     
-    func getAllPlaylists() -> [GAPlaylistModel] {
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: GADBEntityType.playlist.rawValue)
+    func getPlaylist(withName: String) -> GAPlaylistModel? {
+        var playList: GAPlaylistModel?
+
+        let request = NSFetchRequest<GAPlaylistModel>(entityName: GADBEntityType.playlist.rawValue)
+        request.predicate = NSPredicate(format: "name = %@", withName)
+        if let result = try? GACoreDataManager.sharedInstance.privateContext.fetch(request), result.count > 0{
+            playList = result[0]
+        } else {
+            playList = NSEntityDescription.insertNewObject(forEntityName: GADBEntityType.playlist.rawValue, into: GACoreDataManager.sharedInstance.privateContext) as? GAPlaylistModel
+            playList?.name = withName
+            _ = saveContext()
+        }
+        return playList
+    }
+
+    @discardableResult
+    func updatePlaylist(name : String,songModel : GASongModel) -> Error? {
+
+        if let playlist = getPlaylist(withName: name), let songs = playlist.songs?.allObjects as? [GASongModel]{
+            for song in songs {
+                if song.itemId == songModel.itemId {
+                    playlist.removeFromSongs(song)
+                }
+            }
+        }
+        return saveContext()
+    }
+    
+    func getAllPlaylists(songId: String? = nil) -> [GAPlaylistModel] {
+        let request = NSFetchRequest<GAPlaylistModel>(entityName: GADBEntityType.playlist.rawValue)
         request.relationshipKeyPathsForPrefetching = ["songs","playlist"]
         do {
-            let result = try GACoreDataManager.sharedInstance.persistentContainer.viewContext.fetch(request)
-            if let resultData = result as? [GAPlaylistModel] {
-                return resultData
+            var result = try GACoreDataManager.sharedInstance.privateContext.fetch(request)
+            if let songId = songId, songId.isEmpty == false {
+                result = result.filter { (playlist) -> Bool in
+                    if let songs = playlist.songs?.allObjects as? [GASongModel] {
+                        var found = false
+                        for song in songs {
+                            if song.itemId == songId {
+                                found = true
+                                break
+                            }
+                        }
+                        return !found
+                    }
+                    return true
+                }
             }
+            return result
         } catch {
             print("Failed")
         }
         return [GAPlaylistModel]()
         
     }
-    
-    
-    private func saveSongModel(model : GASongModel) {
-        let song:GASongModel? = NSEntityDescription.insertNewObject(forEntityName: GADBEntityType.song.rawValue, into: GACoreDataManager.sharedInstance.privateContext) as? GASongModel
-        song?.name = model.name ?? ""
-        song?.imageUrl = model.imageUrl
-        song?.itemId = model.itemId
-        saveContext()
-    }
-
 }

@@ -11,7 +11,6 @@ import UIKit
 final class GAPlaylistDetailVM: NSObject {
 
     var playlistModel : GAPlaylistModel?
-    var modelState : GAPlaylistUpdatedState = .none
     
     init(playlistModel : GAPlaylistModel) {
         self.playlistModel = playlistModel
@@ -20,18 +19,21 @@ final class GAPlaylistDetailVM: NSObject {
     
     func getFeeds() -> [GASongModel] {
         if let songData = playlistModel?.songs?.allObjects as? [GASongModel], !songData.isEmpty {
-//        if let songData = playlistModel?.playlistSongs {
-                return songData
+            return songData
         }
         return [GASongModel]()
     }
     
+    func deletePlaylist() {
+        if let name = playlistModel?.name {
+            GACoreDataManager.sharedInstance.removePlaylist(name: name)
+        }
+    }
+    
     func removeSongAtIndex(index :Int) {
         if var songData = playlistModel?.songs?.allObjects as? [GASongModel], songData.count > index {
-            modelState = .updated
             let song = songData.remove(at: index)
             GACoreDataManager.sharedInstance.updatePlaylist(name: playlistModel?.name ?? "", songModel: song)
-//            playlistModel?.playlistSongs = songData
         }
     }
 }

@@ -63,8 +63,9 @@ final class GAAddToPlaylistVC: UIViewController {
     }
     
     @IBAction func doneButtonTapped(_ sender: UIButton) {
-        viewModel?.addSongsToSelectedPlaylists()
+        self.processResult(error: self.viewModel?.addSongsToSelectedPlaylists())
     }
+
     func openAlert(){
         let alertController = UIAlertController(title: GAAlertConstants.NewPlaylistName, message: GAAlertConstants.EnterPlaylisName, preferredStyle: .alert)
         alertController.addTextField { (textField : UITextField!) -> Void in
@@ -74,8 +75,7 @@ final class GAAddToPlaylistVC: UIViewController {
         let saveAction = UIAlertAction(title:GAAlertConstants.Save, style: .default, handler: {[weak self] alert -> Void in
             if let textField = alertController.textFields?[0], let text = textField.text {
                 if text.count > 0 {
-                    self?.viewModel?.addSongToNewPlaylist(name: text)
-                    self?.tableView.reloadData()
+                    self?.processResult(error: self?.viewModel?.addSongToNewPlaylist(name: text))
                 }
             }
         })
@@ -89,6 +89,26 @@ final class GAAddToPlaylistVC: UIViewController {
         alertController.preferredAction = saveAction
         
         self.present(alertController, animated: true, completion: nil)
+    }
+
+    func processResult(error: Error?) {
+        if let error = error {
+            let alertController = UIAlertController(title: GAAlertConstants.Error, message: error.localizedDescription, preferredStyle: .alert)
+
+            let cancelAction = UIAlertAction(title: GAAlertConstants.Cancel, style: .default, handler: {
+                (action : UIAlertAction!) -> Void in})
+
+            alertController.addAction(cancelAction)
+            self.present(alertController, animated: true, completion: nil)
+        } else {
+            let alertController = UIAlertController(title: GAAlertConstants.Success, message: GAAlertConstants.SongAdded, preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: GAAlertConstants.Ok, style: .default, handler: {
+                (action : UIAlertAction!) -> Void in
+                self.dismiss(animated: true, completion: nil)
+            })
+            alertController.addAction(cancelAction)
+            self.present(alertController, animated: true, completion: nil)
+        }
     }
 }
 

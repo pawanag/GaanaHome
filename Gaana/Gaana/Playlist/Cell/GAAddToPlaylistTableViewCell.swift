@@ -37,6 +37,7 @@ class GAAddToPlaylistTableViewCell: UITableViewCell {
         }
         if let songsArray = playlist.songs?.allObjects as? [GASongModel], !songsArray.isEmpty {
             guard let imageUrl = songsArray.first?.imageUrl else {
+                self.playlistImageView.image = nil
                 return
             }
             GACacheImageWrapper.sharedInstance.downloadImageWith(url: URL(string: imageUrl), indexPath: indexPath, completionHandler: {[weak self] (image, url, indexPathObj, error) in
@@ -45,6 +46,8 @@ class GAAddToPlaylistTableViewCell: UITableViewCell {
                 }
             })
             
+        } else {
+            self.playlistImageView.image = nil
         }
     }
     

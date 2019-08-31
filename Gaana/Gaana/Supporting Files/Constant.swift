@@ -50,6 +50,7 @@ struct GAConstants
     }
     
     struct GAAlertConstants {
+        static let Success = "Success"
         static let Save = "Save"
         static let Cancel = "Cancel"
         static let NewPlaylistName = "New Playlist Name"
@@ -57,6 +58,10 @@ struct GAConstants
         static let PlaylistNamePlaceholder = "Playlist Name"
         static let Ok = "Ok"
         static let SureDeletePlaylist = "Do you want to delete this playlist?"
+        static let Error = "Error"
+        static let SongAdded = "Song Added Successfully"
+        static let Oops = "Oops!"
+        static let NoSongsInPlaylist = "There are no somgs in this Playlist, Please select another Playlist"
     }
     
     struct GAImageNameConstants {

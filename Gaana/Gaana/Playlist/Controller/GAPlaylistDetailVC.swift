@@ -14,10 +14,6 @@ enum GAPlaylistUpdatedState {
     case none
 }
 
-protocol GADetailListingProtocol : class {
-    func updateModel(playlistModel:GAPlaylistModel, state : GAPlaylistUpdatedState)
-}
-
 enum PlaylistDetailSection : Int {
     case header
     case listing
@@ -28,7 +24,6 @@ final class GAPlaylistDetailVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     private var playlistSections : [PlaylistDetailSection] = [.header,.listing]
     var viewModel : GAPlaylistDetailVM?
-    weak var delegate : GADetailListingProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,9 +52,9 @@ final class GAPlaylistDetailVC: UIViewController {
     @objc func deleteTapped() {
         let alertController = UIAlertController(title: viewModel?.playlistModel?.name ?? "", message: GAAlertConstants.SureDeletePlaylist, preferredStyle: .alert)
         let okAction = UIAlertAction(title: GAAlertConstants.Ok, style: .default, handler: {[weak self] alert -> Void in
-            self?.viewModel?.modelState = .deleted
             self?.navigationController?.popViewController(animated: true)
             // Delete Playlist
+            self?.viewModel?.deletePlaylist()
         })
         let cancelAction = UIAlertAction(title: GAAlertConstants.Cancel, style: .default, handler: {
             (action : UIAlertAction!) -> Void in })
@@ -67,20 +62,15 @@ final class GAPlaylistDetailVC: UIViewController {
         alertController.addAction(cancelAction)
         alertController.addAction(okAction)
         alertController.preferredAction = okAction
-        
-        self.present(alertController, animated: true, completion: nil)
         // Sure to delete Playlist
+        self.present(alertController, animated: true, completion: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        if let playlistModel = viewModel?.playlistModel, let state =  viewModel?.modelState{
-            self.delegate?.updateModel(playlistModel: playlistModel, state: state)
-        }
         super.viewWillDisappear(animated)
     }
 
 }
-
 // MARK: - TableView Data Source Delegates
 
 extension GAPlaylistDetailVC : UITableViewDataSource, UITableViewDelegate {
@@ -134,15 +124,13 @@ extension GAPlaylistDetailVC : UITableViewDataSource, UITableViewDelegate {
         case .header:
             return false
         default:
-                return true
+            return true
         }
     }
 
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            
-//            tableView.deleteRows(at: [indexPath], with: .fade)
             if let songsArray = viewModel?.playlistModel?.songs?.allObjects as? [GASongModel], songsArray.count == 1, indexPath.row == 0 {
                 viewModel?.removeSongAtIndex(index:indexPath.row)
                 self.navigationController?.popViewController(animated: true)

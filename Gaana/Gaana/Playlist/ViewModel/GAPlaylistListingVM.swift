@@ -26,7 +26,6 @@ final class GAPlaylistListingVM: NSObject {
         playlist.name = name
         GACoreDataManager.sharedInstance.saveContext()
         playlistData.append(playlist)
-        persistPlaylist()
     }
     
     func updatePlaylist(playlistModel:GAPlaylistModel, state : GAPlaylistUpdatedState) {
@@ -48,9 +47,5 @@ final class GAPlaylistListingVM: NSObject {
             break
 
         }
-    }
-    private func persistPlaylist() {
-        
-        
     }
 }

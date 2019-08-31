@@ -18,29 +18,34 @@ final class GAAddToPlaylistVM {
         self.modelToBeSaved = modelToBeSaved
     }
     
-    func addSongToNewPlaylist(name : String) {
-        GACoreDataManager.sharedInstance.addSongToNewPlaylist(name: name, songModel: modelToBeSaved)
-        addSongsToSelectedPlaylists()
-        playlistData = GACoreDataManager.sharedInstance.getAllPlaylists()
+    func addSongToNewPlaylist(name : String) -> Error? {
+        var error = GACoreDataManager.sharedInstance.addSongToNewPlaylist(name: name, songModel: modelToBeSaved)
+        if error == nil {
+            error = addSongsToSelectedPlaylists()
+            playlistData = GACoreDataManager.sharedInstance.getAllPlaylists()
+        }
+        return error
     }
 
-    func addSongsToSelectedPlaylists() {
+    func addSongsToSelectedPlaylists() -> Error? {
         if selectedIndexes.count > 0 {
             var playLists = [GAPlaylistModel]()
             for index in selectedIndexes.keys {
                 let playlist = playlistData[index]
                 playLists.append(playlist)
             }
-            GACoreDataManager.sharedInstance.addSongToPlaylists(playlists: playLists, songModel: modelToBeSaved)
+            return GACoreDataManager.sharedInstance.addSongToPlaylists(playlists: playLists, songModel: modelToBeSaved)
         }
+        return nil
     }
 
     func addSongToPlaylists(playlists:[GAPlaylistModel]) {
         
     }
+
     func getPlaylists() -> [GAPlaylistModel] {
         if playlistData.count == 0 {
-            playlistData = GACoreDataManager.sharedInstance.getAllPlaylists()
+            playlistData = GACoreDataManager.sharedInstance.getAllPlaylists(songId: modelToBeSaved.itemId)
             return playlistData
         } else {
             return playlistData

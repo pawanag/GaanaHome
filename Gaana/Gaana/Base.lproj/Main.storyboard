@@ -403,6 +403,9 @@
                                 <state key="normal" title="Done">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="doneButtonTapped:" destination="aRy-9Z-gkl" eventType="touchUpInside" id="yy2-Wf-eSN"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -425,6 +428,7 @@
                     </view>
                     <connections>
                         <outlet property="createNewPlaylistButton" destination="CHP-Kq-T83" id="P2x-tW-BVA"/>
+                        <outlet property="doneButton" destination="Zvm-ah-dVl" id="f8Q-JE-nyO"/>
                         <outlet property="tableView" destination="A0U-GW-KJS" id="kUN-UK-mAm"/>
                     </connections>
                 </viewController>
@@ -435,7 +439,7 @@
     </scenes>
     <resources>
         <image name="close" width="24" height="24"/>
-        <image name="nonHighlightedHome" width="24.5" height="24.5"/>
-        <image name="nonHighlightedMyPlaylists" width="24.5" height="24.5"/>
+        <image name="nonHighlightedHome" width="12" height="12"/>
+        <image name="nonHighlightedMyPlaylists" width="12" height="12"/>
     </resources>
 </document>

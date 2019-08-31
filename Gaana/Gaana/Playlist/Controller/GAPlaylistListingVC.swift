@@ -23,7 +23,7 @@ final class GAPlaylistListingVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.getPlaylists()
-        checkIfReloadRequired()
+        self.tableView.reloadData()
     }
     
     private func configureTableView() {
@@ -38,12 +38,6 @@ final class GAPlaylistListingVC: UIViewController {
         self.navigationItem.rightBarButtonItem = add
     }
     
-    
-    private func checkIfReloadRequired() {
-        if tableView.numberOfRows(inSection: 0) != viewModel.playlistData.count {
-            self.tableView.reloadData()
-        }
-    }
     @objc private func addTapped() {
         let alertController = UIAlertController(title: GAAlertConstants.EnterPlaylisName, message: GAAlertConstants.EnterPlaylisName, preferredStyle: .alert)
         alertController.addTextField { (textField : UITextField!) -> Void in
@@ -72,6 +66,15 @@ final class GAPlaylistListingVC: UIViewController {
         self.tableView.register(UINib(nibName: GACellConstants.AddToPlaylistTableViewCell, bundle: nil), forCellReuseIdentifier: GACellConstants.AddToPlaylistTableViewCell)
     }
 
+    private func showNoSongsInPlaylistAlert() {
+        let alertController = UIAlertController(title: GAAlertConstants.Oops, message: GAAlertConstants.NoSongsInPlaylist, preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: GAAlertConstants.Ok, style: .default, handler: {
+            (action : UIAlertAction!) -> Void in
+            self.dismiss(animated: true, completion: nil)
+        })
+        alertController.addAction(cancelAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
 }
 // MARK: - TableView Data Source Delegates
 
@@ -91,19 +94,17 @@ extension GAPlaylistListingVC :UITableViewDataSource,UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         if viewModel.playlistData.count > indexPath.row {
             if let detailVC = UIStoryboard(name: GAConstants.GAStoryBoardConstants.StoryboardIdentifier, bundle: nil).instantiateViewController(withIdentifier: GAControllerConstants.PlaylistDetail) as? GAPlaylistDetailVC {
-                detailVC.viewModel = GAPlaylistDetailVM(playlistModel: viewModel.playlistData[indexPath.row])
-                detailVC.delegate = self
-                self.navigationController?.pushViewController(detailVC, animated: true)
+                let playlistData = viewModel.playlistData[indexPath.row]
+                if let count = playlistData.songs?.allObjects.count, count > 0 {
+                    detailVC.viewModel = GAPlaylistDetailVM(playlistModel: viewModel.playlistData[indexPath.row])
+                    self.navigationController?.pushViewController(detailVC, animated: true)
+                } else {
+                    showNoSongsInPlaylistAlert()
+                }
             }
         }
-    }
-}
-
-extension GAPlaylistListingVC : GADetailListingProtocol {
-    func updateModel(playlistModel:GAPlaylistModel, state : GAPlaylistUpdatedState) {
-        viewModel.updatePlaylist(playlistModel: playlistModel, state: state)
-        self.tableView.reloadData()
     }
 }
