@@ -19,8 +19,7 @@ final class GAAddToPlaylistVM {
     }
     
     func createPlaylist(name : String) -> Error?  {
-        let playlist = GAPlaylistModel(context: GACoreDataManager.sharedInstance.persistentContainer.viewContext)
-        playlist.name = name
+        _ = GACoreDataManager.sharedInstance.getPlaylist(withName: name)
         return GACoreDataManager.sharedInstance.saveContext()
     }
     
