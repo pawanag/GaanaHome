@@ -24,7 +24,7 @@ final class GAPlaylistListingVM: NSObject {
     func createPlaylist(name : String)  {
         let playlist = GAPlaylistModel(context: GACoreDataManager.sharedInstance.persistentContainer.viewContext)
         playlist.name = name
-        GACoreDataManager.sharedInstance.saveContext()
+        _ = GACoreDataManager.sharedInstance.saveContext()
         playlistData.append(playlist)
     }
     

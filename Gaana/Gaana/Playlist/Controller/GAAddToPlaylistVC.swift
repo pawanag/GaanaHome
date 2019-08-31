@@ -41,7 +41,8 @@ final class GAAddToPlaylistVC: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel?.getPlaylists()
+        
+        _ = viewModel?.getPlaylists()
     }
     
     private func addBorders() {
