@@ -195,7 +195,6 @@
 				432C9B2A231A617600CC0577 /* Constant.swift */,
 				434D87B723116CE800F1DE59 /* Assets.xcassets */,
 				434D87B923116CE800F1DE59 /* LaunchScreen.storyboard */,
-				434D87BC23116CE800F1DE59 /* Info.plist */,
 				434D87B023116CE600F1DE59 /* AppDelegate.swift */,
 			);
 			path = "Supporting Files";
@@ -228,6 +227,7 @@
 				4321F3A12319676E0020ABEF /* Home */,
 				434D87B423116CE600F1DE59 /* Main.storyboard */,
 				432C9B2E231A6DBC00CC0577 /* Supporting Files */,
+				434D87BC23116CE800F1DE59 /* Info.plist */,
 			);
 			path = Gaana;
 			sourceTree = "<group>";
