@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8YC-Rd-hZK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8YC-Rd-hZK">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,6 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="eU2-Jq-k90" kind="relationship" relationship="viewControllers" id="tPY-O1-J0v"/>
@@ -81,7 +82,6 @@
                                                             </view>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="trailing" secondItem="Zvm-PC-Mkn" secondAttribute="trailing" id="A2D-YK-68r"/>
                                                                 <constraint firstItem="6HN-Qd-IJJ" firstAttribute="trailing" secondItem="Zvm-PC-Mkn" secondAttribute="trailing" id="KpH-CB-kO3"/>
                                                                 <constraint firstItem="Zvm-PC-Mkn" firstAttribute="leading" secondItem="jJf-gY-lbY" secondAttribute="leading" constant="20" id="jzy-Y5-hXX"/>
                                                                 <constraint firstItem="6HN-Qd-IJJ" firstAttribute="top" secondItem="Zvm-PC-Mkn" secondAttribute="bottom" constant="10" id="oW4-7T-52i"/>
@@ -275,7 +275,7 @@
         <scene sceneID="Z30-Rb-FBQ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wRq-wZ-bUU" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="My Playlists" image="nonHighlightedMyPlaylists" selectedImage="highlightedMyPlaylists" id="0ph-11-ukF"/>
+                    <tabBarItem key="tabBarItem" title="My Playlists" image="nonHighlightedMyPlaylists" selectedImage="nonHighlightedMyPlaylists" id="0ph-11-ukF"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ead-zH-E06">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -294,7 +294,7 @@
         <scene sceneID="HDm-1N-SnT">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="eU2-Jq-k90" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" image="nonHighlightedHome" selectedImage="highlightedHome" id="Zer-W3-4ot"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="nonHighlightedHome" selectedImage="nonHighlightedHome" id="Zer-W3-4ot"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="rhC-Iu-8uQ">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -403,9 +403,6 @@
                                 <state key="normal" title="Done">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
-                                <connections>
-                                    <action selector="doneButtonTapped:" destination="aRy-9Z-gkl" eventType="touchUpInside" id="pYb-05-fEa"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -428,7 +425,6 @@
                     </view>
                     <connections>
                         <outlet property="createNewPlaylistButton" destination="CHP-Kq-T83" id="P2x-tW-BVA"/>
-                        <outlet property="doneButton" destination="Zvm-ah-dVl" id="OE9-ky-Po2"/>
                         <outlet property="tableView" destination="A0U-GW-KJS" id="kUN-UK-mAm"/>
                     </connections>
                 </viewController>
@@ -439,9 +435,7 @@
     </scenes>
     <resources>
         <image name="close" width="24" height="24"/>
-        <image name="highlightedHome" width="12" height="12"/>
-        <image name="highlightedMyPlaylists" width="12" height="12"/>
-        <image name="nonHighlightedHome" width="12" height="12"/>
-        <image name="nonHighlightedMyPlaylists" width="12" height="12"/>
+        <image name="nonHighlightedHome" width="24.5" height="24.5"/>
+        <image name="nonHighlightedMyPlaylists" width="24.5" height="24.5"/>
     </resources>
 </document>

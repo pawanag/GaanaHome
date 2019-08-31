@@ -23,13 +23,9 @@ class GAFeedTableViewCell: UITableViewCell {
         self.headerText.text = model.name
         self.songModels = model.tracks
         cellType = model.viewType
-//        let flowLayout = UICollectionViewFlowLayout()
-//       
-//            flowLayout.scrollDirection = .horizontal
-//            collectionView.collectionViewLayout = flowLayout
-        
         collectionView.reloadData()
     }
+    
     @IBAction func seeAllTapped(_ sender: UIButton) {
         self.delegate?.seeAllTapped(songData: songModels)
     }

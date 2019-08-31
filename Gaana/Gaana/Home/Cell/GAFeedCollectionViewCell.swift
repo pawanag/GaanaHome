@@ -14,6 +14,7 @@ class GAFeedCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var cellImageView: UIImageView!
     @IBOutlet weak var cellHeight: NSLayoutConstraint!
     @IBOutlet weak var cellWidth: NSLayoutConstraint!
+    
     func configure(model: GASongModel, indexPath: IndexPath, cellType: GAViewType){
         //config cell components
         cellImageView.layer.cornerRadius = cellType.cellImageCornerRadius
@@ -22,6 +23,7 @@ class GAFeedCollectionViewCell: UICollectionViewCell {
         cellLabel.text = model.name
         cellLabel.font = cellType.font
         cellImageView.image = nil
+        
         if let url = URL(string: model.imageUrl ?? "" ){
             GACacheImageWrapper.sharedInstance.downloadImageWith(url: url, indexPath: indexPath) { [weak self](image, url, indexPathObj, error) in
                 if let imageObj = image, indexPath == indexPathObj{
