@@ -49,7 +49,7 @@ extension GAHomeVC : UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let modelType = viewModel.modelData[indexPath.row].viewType
-        return modelType.cellHeight + kcellPadding
+        return modelType.cumulativeCellHeight
     }
     
     

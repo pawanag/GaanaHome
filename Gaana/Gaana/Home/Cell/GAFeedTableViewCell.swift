@@ -13,7 +13,6 @@ protocol GAHomeListingAction : class {
 }
 
 class GAFeedTableViewCell: UITableViewCell {
-
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var headerText: UILabel!
     private var songModels = [GASongModel]()
@@ -44,7 +43,7 @@ extension GAFeedTableViewCell : UICollectionViewDataSource, UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GAFeedCollectionViewCell", for: indexPath) as? GAFeedCollectionViewCell {
             if songModels.count > indexPath.row {
-                cell.configure(model: songModels[indexPath.row], indexPath: indexPath)
+                cell.configure(model: songModels[indexPath.row], indexPath: indexPath, cellType: cellType)
             }
             return cell
         }
@@ -57,7 +56,7 @@ extension GAFeedTableViewCell : UICollectionViewDataSource, UICollectionViewDele
         }
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: cellType.cellWidth, height: cellType.cellHeight)
+        return cellType.collectionCellSize
     }
     
 }

@@ -53,9 +53,9 @@ final class GACoreDataManager:NSObject {
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
-            self.persistentContainer.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
-            self.persistentContainer.viewContext.undoManager = nil
-            self.persistentContainer.viewContext.shouldDeleteInaccessibleFaults = true
+//            self.persistentContainer.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+//            self.persistentContainer.viewContext.undoManager = nil
+//            self.persistentContainer.viewContext.shouldDeleteInaccessibleFaults = true
 
         })
         return container
@@ -126,7 +126,7 @@ extension GACoreDataManager {
         if let result = try? GACoreDataManager.sharedInstance.persistentContainer.viewContext.fetch(request), let resultFetched = result as? [GAPlaylistModel], let songs = resultFetched[0].songs?.allObjects as? [GASongModel]{
             for song in songs {
                 if song.itemId == songModel.itemId {
-                    GACoreDataManager.sharedInstance.persistentContainer.viewContext.delete(song as! NSManagedObject)
+                    GACoreDataManager.sharedInstance.persistentContainer.viewContext.delete(song as NSManagedObject)
                     
                 }
             }

@@ -21,12 +21,12 @@ enum ListingCellType {
     
     var imageName: String{
         switch self {
-        case .songsListing:
+        case .songsListing,.addToPlaylistListing:
             return "addToPlaylist"
         case .playlistListing:
             return "checkBoxUnSelected"
         default:
-            return "add"
+            return ""
         }
     }
     
@@ -60,7 +60,12 @@ class GAListingTableViewCell: UITableViewCell {
     
     func configure(playlist : GAPlaylistModel, indexPath : IndexPath, type:ListingCellType) {
         self.name.text = playlist.name
-        selectionButton.imageView?.image = UIImage.init(named: type.imageName)
+        if type == .none {
+            self.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
+        } else {
+            selectionButton.setImage(UIImage(named: type.imageName), for: .normal)
+            self.accessoryType = UITableViewCell.AccessoryType.none
+        }
         self.listingCellType = type
         self.model = playlist
         if let songsArray = playlist.songs?.allObjects as? [GASongModel], !songsArray.isEmpty {
@@ -79,7 +84,7 @@ class GAListingTableViewCell: UITableViewCell {
     func configure(song : GASongModel, indexPath : IndexPath, type:ListingCellType) {
         self.name.text = song.name
         let imageUrl = song.imageUrl
-        selectionButton.imageView?.image = UIImage.init(named: type.imageName)
+        selectionButton.setImage(UIImage(named: type.imageName), for: .normal)
         self.listingCellType = type
         self.model = song
         GACacheImageWrapper.sharedInstance.downloadImageWith(url: URL(string: imageUrl ?? ""), indexPath: indexPath, completionHandler: {[weak self] (image, url, indexPathObj, error) in

@@ -112,7 +112,8 @@ extension GAPlaylistDetailVC : UITableViewDataSource, UITableViewDelegate {
         case .listing:
             if let cell = tableView.dequeueReusableCell(withIdentifier: "GAListingTableViewCell") as? GAListingTableViewCell {
                 if viewModel?.getFeeds().count ?? 0 > indexPath.row, let songModel =  viewModel?.getFeeds()[indexPath.row] {
-                    cell.configure(song: songModel, indexPath: indexPath, type : .playlistListing)
+                    cell.configure(song: songModel, indexPath: indexPath, type : .addToPlaylistListing)
+                    cell.delegate = self
                 }
                 return cell
             }
@@ -141,6 +142,18 @@ extension GAPlaylistDetailVC : UITableViewDataSource, UITableViewDelegate {
             } else {
                 viewModel?.removeSongAtIndex(index:indexPath.row)
                 tableView.reloadData()
+            }
+        }
+    }
+    
+}
+extension GAPlaylistDetailVC : GAListingCellAction {
+    func listingSelectedForType(type : ListingCellType, modelData : Any) {
+        if let songModel = modelData as? GASongModel, type == ListingCellType.addToPlaylistListing {
+            if let addToPlaylistVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GAAddToPlaylistVC") as? GAAddToPlaylistVC {
+                let addToPlaylistVM = GAAddToPlaylistVM(modelToBeSaved: songModel)
+                addToPlaylistVC.viewModel = addToPlaylistVM
+                self.present(addToPlaylistVC, animated: true, completion: nil)
             }
         }
     }

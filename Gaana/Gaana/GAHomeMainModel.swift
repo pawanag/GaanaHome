@@ -6,40 +6,67 @@
 //  Copyright © 2019 Pawan. All rights reserved.
 //
 
-let kcellPadding : CGFloat = 120
 import CoreData
-
 import UIKit
+
+
 enum GAViewType: Int{
     case largeSquareHS, smallSqaureHS, circularHS, rectangularHS, gridVS, unknown
+    //private var
+    private var kCellOuterPadding: CGFloat{
+        return 110
+    }
     
-    var cellWidth: CGFloat{
+    private var labelPadding: CGFloat{
+        return font.lineHeight * 2
+    }
+    
+    //exposed variables
+    var cellSize: CGSize{
         switch self {
-        case .largeSquareHS, .circularHS, .rectangularHS:
-            return 175
+        case .largeSquareHS, .circularHS:
+            return CGSize(width: 155, height: 155)
         case .smallSqaureHS:
-            return 90
+            return CGSize(width: 70, height: 70)
+        case .rectangularHS:
+            return CGSize(width: 155, height: 90)
         case .gridVS:
-            return 180
+            return CGSize(width: 160, height: 160)
         default:
-            return 0
+            return .zero
         }
     }
     
-    
-    var cellHeight : CGFloat{
-        switch self {
-        case .largeSquareHS, .circularHS:
-            return 210
-        case .rectangularHS:
-            return 145
-        case .smallSqaureHS:
-            return 125
-        case .gridVS:
-            return 480 //2 rowcount
-        default:
+    var cellImageCornerRadius : CGFloat{
+        if self == .circularHS{
+            return cellSize.height/2
+        }else{
             return 0
         }
+        
+    }
+    
+    var font: UIFont{
+        switch self {
+        case .largeSquareHS, .circularHS, .rectangularHS, .gridVS:
+            return UIFont.systemFont(ofSize: 16)
+        case .smallSqaureHS:
+            return UIFont.systemFont(ofSize: 12)
+        default:
+            return UIFont.systemFont(ofSize: 0)
+        }
+    }
+    
+    var cumulativeCellHeight: CGFloat{
+        var height = collectionCellSize.height + kCellOuterPadding
+        if self == .gridVS{
+            height = height + collectionCellSize.height
+        }
+        return height
+    }
+    
+    var collectionCellSize: CGSize{
+        return CGSize(width: cellSize.width + 20, height: cellSize.height + labelPadding + 10)
     }
 }
 
