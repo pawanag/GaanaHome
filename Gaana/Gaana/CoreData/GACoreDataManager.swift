@@ -108,6 +108,10 @@ extension GACoreDataManager {
         }
         saveContext()
     }
+    
+    func addSongToPlaylists(playlists : [GAPlaylistModel], songModel : GASongModel) {
+        //TODO
+    }
     func removePlaylist(name : String) {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: GADBEntityType.playlist.rawValue)
         fetchRequest.predicate = NSPredicate(format: "name = %@", name)
@@ -127,10 +131,8 @@ extension GACoreDataManager {
             for song in songs {
                 if song.itemId == songModel.itemId {
                     GACoreDataManager.sharedInstance.persistentContainer.viewContext.delete(song as NSManagedObject)
-                    
                 }
             }
-            
         }
         saveContext()
     }

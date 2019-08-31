@@ -15,8 +15,6 @@ class GAHomeVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.delegate = self
-        tableView.dataSource = self
         self.populateData()
     }
     
@@ -26,7 +24,6 @@ class GAHomeVC: UIViewController {
     }
     
     // Registering Completion handler to redraw table after API call have finished
-    
     private func registerCompletionHandler() {
         viewModel.completionHandler = { [weak self] (action) in
             DispatchQueue.main.async {
@@ -54,7 +51,7 @@ extension GAHomeVC : UITableViewDataSource, UITableViewDelegate {
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "GAFeedTableViewCell") as? GAFeedTableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: GACellConstants.FeedTableViewCell) as? GAFeedTableViewCell {
             if viewModel.modelData.count > indexPath.row{
                 cell.configure(model: viewModel.modelData[indexPath.row] )
                 cell.delegate = self
@@ -67,7 +64,7 @@ extension GAHomeVC : UITableViewDataSource, UITableViewDelegate {
 
 extension GAHomeVC : GAHomeListingAction {
     func seeAllTapped(songData: [GASongModel]) {
-        if let detailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GASongsListingVC") as? GASongsListingVC {
+        if let detailVC = UIStoryboard(name: GAConstants.GAStoryBoardConstants.StoryboardIdentifier, bundle: nil).instantiateViewController(withIdentifier: GAControllerConstants.SongsListingVC) as? GASongsListingVC {
             detailVC.viewModel = GASongsListingVM(songData: songData)
             self.navigationController?.pushViewController(detailVC, animated: true)
         }

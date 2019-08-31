@@ -41,7 +41,7 @@ extension GAFeedTableViewCell : UICollectionViewDataSource, UICollectionViewDele
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GAFeedCollectionViewCell", for: indexPath) as? GAFeedCollectionViewCell {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GACellConstants.FeedCollectionViewCell, for: indexPath) as? GAFeedCollectionViewCell {
             if songModels.count > indexPath.row {
                 cell.configure(model: songModels[indexPath.row], indexPath: indexPath, cellType: cellType)
             }

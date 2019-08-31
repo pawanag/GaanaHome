@@ -13,16 +13,32 @@ final class GAAddToPlaylistVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     var viewModel : GAAddToPlaylistVM?
     
+    @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var createNewPlaylistButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureTableView()
+        addBorders()
+        self.doneButtonState(enabled: false)
+    }
+    
+    private func configureTableView() {
         registerCells()
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableView.automaticDimension
         tableView.tableFooterView = UIView()
-        addBorders()
     }
     
+    private func doneButtonState(enabled: Bool) {
+        if enabled {
+            doneButton.backgroundColor = UIColor.red
+            doneButton.isUserInteractionEnabled = true
+        } else {
+            doneButton.backgroundColor = UIColor.lightGray
+            doneButton.isUserInteractionEnabled = false
+        }
+    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel?.getPlaylists()
@@ -35,7 +51,7 @@ final class GAAddToPlaylistVC: UIViewController {
     }
     
     private func registerCells() {
-        self.tableView.register(UINib(nibName: "GAListingTableViewCell", bundle: nil), forCellReuseIdentifier: "GAListingTableViewCell")
+        self.tableView.register(UINib(nibName: GACellConstants.AddToPlaylistTableViewCell, bundle: nil), forCellReuseIdentifier: GACellConstants.AddToPlaylistTableViewCell)
     }
     
     @IBAction func closeTapped(_ sender: UIButton) {
@@ -46,13 +62,16 @@ final class GAAddToPlaylistVC: UIViewController {
         openAlert()
     }
     
+    @IBAction func doneButtonTapped(_ sender: UIButton) {
+        viewModel?.addSongsToSelectedPlaylists()
+    }
     func openAlert(){
-        let alertController = UIAlertController(title: "New Playlist Name", message: "Enter a playlist name", preferredStyle: .alert)
+        let alertController = UIAlertController(title: GAAlertConstants.NewPlaylistName, message: GAAlertConstants.EnterPlaylisName, preferredStyle: .alert)
         alertController.addTextField { (textField : UITextField!) -> Void in
-            textField.placeholder = "Playlist name"
+            textField.placeholder = GAAlertConstants.PlaylistNamePlaceholder
         }
         
-        let saveAction = UIAlertAction(title: "Save", style: .default, handler: {[weak self] alert -> Void in
+        let saveAction = UIAlertAction(title:GAAlertConstants.Save, style: .default, handler: {[weak self] alert -> Void in
             if let textField = alertController.textFields?[0], let text = textField.text {
                 if text.count > 0 {
                     self?.viewModel?.addSongToNewPlaylist(name: text)
@@ -61,7 +80,7 @@ final class GAAddToPlaylistVC: UIViewController {
             }
         })
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: {
+        let cancelAction = UIAlertAction(title: GAAlertConstants.Cancel, style: .default, handler: {
             (action : UIAlertAction!) -> Void in })
         
         alertController.addAction(cancelAction)
@@ -83,14 +102,29 @@ extension GAAddToPlaylistVC : UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "GAListingTableViewCell") as? GAListingTableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: GACellConstants.AddToPlaylistTableViewCell) as? GAAddToPlaylistTableViewCell {
             if viewModel?.getPlaylists().count ?? 0 > indexPath.row {
                 if let playListModel =  viewModel?.getPlaylists()[indexPath.row] {
                     cell.configure(playlist: playListModel, indexPath: indexPath, type : .addToPlaylistListing)
+                    cell.delegate = self
                 }
             }
             return cell
         }
         return UITableViewCell()
     }
+}
+
+extension GAAddToPlaylistVC : GAAddToPlaylistCellAction {
+    
+    func playlistSelected(state : Bool, index : Int) {
+
+        if state {
+            viewModel?.selectedIndexes[index] = state
+        } else {
+            viewModel?.selectedIndexes.removeValue(forKey: index)
+        }
+        doneButtonState(enabled: viewModel?.selectedIndexes.count ?? 0 > 0)
+    }
+    
 }

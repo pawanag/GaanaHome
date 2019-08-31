@@ -11,10 +11,6 @@ import UIKit
 class GAHeaderTableViewCell: UITableViewCell {
 
     @IBOutlet weak var headerImageView: UIImageView!
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
     
     override func prepareForReuse() {
         headerImageView.image = nil
@@ -22,7 +18,6 @@ class GAHeaderTableViewCell: UITableViewCell {
     }
     
 // MARK: - Configuration of HeaderView
-    
     func configure(urlString : String, indexPath : IndexPath) {
         GACacheImageWrapper.sharedInstance.downloadImageWith(url: URL(string: urlString), indexPath: indexPath, completionHandler: {[weak self] (image, url, indexPathObj, error) in
             if let image = image, indexPath == indexPathObj {

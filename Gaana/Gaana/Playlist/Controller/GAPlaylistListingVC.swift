@@ -16,18 +16,28 @@ final class GAPlaylistListingVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        registerCells()
-        tableView.estimatedRowHeight = 100
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.tableFooterView = UIView()
-        let add = UIBarButtonItem(image: UIImage(named: "add"), style: .plain, target: self, action: #selector(addTapped))
-        self.navigationItem.rightBarButtonItem = add
+        configureTableView()
+        addBarButton()
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.getPlaylists()
         checkIfReloadRequired()
     }
+    
+    private func configureTableView() {
+        registerCells()
+        tableView.estimatedRowHeight = 100
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.tableFooterView = UIView()
+    }
+    
+    private func addBarButton() {
+        let add = UIBarButtonItem(image: UIImage(named: GAImageNameConstants.Add), style: .plain, target: self, action: #selector(addTapped))
+        self.navigationItem.rightBarButtonItem = add
+    }
+    
     
     private func checkIfReloadRequired() {
         if tableView.numberOfRows(inSection: 0) != viewModel.playlistData.count {
@@ -35,11 +45,11 @@ final class GAPlaylistListingVC: UIViewController {
         }
     }
     @objc private func addTapped() {
-        let alertController = UIAlertController(title: "New Playlist Name", message: "Enter a playlist name", preferredStyle: .alert)
+        let alertController = UIAlertController(title: GAAlertConstants.EnterPlaylisName, message: GAAlertConstants.EnterPlaylisName, preferredStyle: .alert)
         alertController.addTextField { (textField : UITextField!) -> Void in
-            textField.placeholder = "Playlist name"
+            textField.placeholder = GAAlertConstants.PlaylistNamePlaceholder
         }
-        let saveAction = UIAlertAction(title: "Save", style: .default, handler: {[weak self] alert -> Void in
+        let saveAction = UIAlertAction(title: GAAlertConstants.Save, style: .default, handler: {[weak self] alert -> Void in
             if let textField = alertController.textFields?[0], let text = textField.text {
                 if text.count > 0 {
                     self?.viewModel.createPlaylist(name:text)
@@ -48,7 +58,7 @@ final class GAPlaylistListingVC: UIViewController {
             }
         })
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: {
+        let cancelAction = UIAlertAction(title: GAAlertConstants.Cancel, style: .default, handler: {
             (action : UIAlertAction!) -> Void in })
         
         alertController.addAction(cancelAction)
@@ -59,7 +69,7 @@ final class GAPlaylistListingVC: UIViewController {
     }
     
     private func registerCells() {
-        self.tableView.register(UINib(nibName: "GAListingTableViewCell", bundle: nil), forCellReuseIdentifier: "GAListingTableViewCell")
+        self.tableView.register(UINib(nibName: GACellConstants.AddToPlaylistTableViewCell, bundle: nil), forCellReuseIdentifier: GACellConstants.AddToPlaylistTableViewCell)
     }
 
 }
@@ -71,10 +81,9 @@ extension GAPlaylistListingVC :UITableViewDataSource,UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "GAListingTableViewCell") as? GAListingTableViewCell {
-//            let playlists = viewModel.getPlaylists()
+        if let cell = tableView.dequeueReusableCell(withIdentifier: GACellConstants.AddToPlaylistTableViewCell) as? GAAddToPlaylistTableViewCell {
             if viewModel.playlistData.count > indexPath.row {
-            cell.configure(playlist: viewModel.playlistData[indexPath.row], indexPath: indexPath,type : ListingCellType.none)
+                cell.configure(playlist: viewModel.playlistData[indexPath.row], indexPath: indexPath,type : ListingCellType.none)
             }
             return cell
         }
@@ -83,16 +92,13 @@ extension GAPlaylistListingVC :UITableViewDataSource,UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if viewModel.playlistData.count > indexPath.row {
-            if let detailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GAPlaylistDetailVC") as? GAPlaylistDetailVC {
+            if let detailVC = UIStoryboard(name: GAConstants.GAStoryBoardConstants.StoryboardIdentifier, bundle: nil).instantiateViewController(withIdentifier: GAControllerConstants.PlaylistDetail) as? GAPlaylistDetailVC {
                 detailVC.viewModel = GAPlaylistDetailVM(playlistModel: viewModel.playlistData[indexPath.row])
                 detailVC.delegate = self
                 self.navigationController?.pushViewController(detailVC, animated: true)
             }
-
         }
-        
     }
-    
 }
 
 extension GAPlaylistListingVC : GADetailListingProtocol {

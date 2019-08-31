@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		432C9B28231A4CE500CC0577 /* GAAddToPlaylistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432C9B26231A4CE500CC0577 /* GAAddToPlaylistTableViewCell.swift */; };
+		432C9B29231A4CE500CC0577 /* GAAddToPlaylistTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 432C9B27231A4CE500CC0577 /* GAAddToPlaylistTableViewCell.xib */; };
+		432C9B2B231A617600CC0577 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432C9B2A231A617600CC0577 /* Constant.swift */; };
 		4341E5A32319C11C00F27C7B /* GASongModel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4341E59F2319C11C00F27C7B /* GASongModel+CoreDataClass.swift */; };
 		4341E5A42319C11C00F27C7B /* GASongModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4341E5A02319C11C00F27C7B /* GASongModel+CoreDataProperties.swift */; };
 		4341E5A52319C11C00F27C7B /* GAPlaylistModel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4341E5A12319C11C00F27C7B /* GAPlaylistModel+CoreDataClass.swift */; };
@@ -65,6 +68,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		432C9B26231A4CE500CC0577 /* GAAddToPlaylistTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GAAddToPlaylistTableViewCell.swift; sourceTree = "<group>"; };
+		432C9B27231A4CE500CC0577 /* GAAddToPlaylistTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GAAddToPlaylistTableViewCell.xib; sourceTree = "<group>"; };
+		432C9B2A231A617600CC0577 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		4341E59F2319C11C00F27C7B /* GASongModel+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GASongModel+CoreDataClass.swift"; sourceTree = "<group>"; };
 		4341E5A02319C11C00F27C7B /* GASongModel+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GASongModel+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		4341E5A12319C11C00F27C7B /* GAPlaylistModel+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GAPlaylistModel+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -131,6 +137,8 @@
 		4321F3A02319675A0020ABEF /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				432C9B26231A4CE500CC0577 /* GAAddToPlaylistTableViewCell.swift */,
+				432C9B27231A4CE500CC0577 /* GAAddToPlaylistTableViewCell.xib */,
 				43A9DCD62319016F00A5A9BE /* GAHeaderTableViewCell.swift */,
 				43A9DCD72319016F00A5A9BE /* GAHeaderTableViewCell.xib */,
 				435AA8DF2318FCB500F2A642 /* GAListingTableViewCell.swift */,
@@ -158,6 +166,28 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		432C9B2C231A6D0A00CC0577 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				43B73B982313780E00DF3CB2 /* GAPlaylistListingVC.swift */,
+				43B73B9C23137AEF00DF3CB2 /* GAPlaylistDetailVC.swift */,
+				43A9DCDE23191CB000A5A9BE /* GAAddToPlaylistVC.swift */,
+				43A9DCDA23190C9A00A5A9BE /* GASongsListingVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		432C9B2D231A6D1800CC0577 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				43B73B9A231378A800DF3CB2 /* GAPlaylistListingVM.swift */,
+				43B73B9E23137B0700DF3CB2 /* GAPlaylistDetailVM.swift */,
+				43A9DCE023191CFB00A5A9BE /* GAAddToPlaylistVM.swift */,
+				43A9DCDC23190DA000A5A9BE /* GASongsListingVM.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		434D87A423116CE600F1DE59 = {
 			isa = PBXGroup;
 			children = (
@@ -182,14 +212,14 @@
 				43A9DCE223194B4200A5A9BE /* CoreData */,
 				43B73B97231377DF00DF3CB2 /* Playlist */,
 				434D87C62311727200F1DE59 /* Network */,
-				4321F3A02319675A0020ABEF /* Cell */,
+				4321F3A12319676E0020ABEF /* Home */,
 				434D87B423116CE600F1DE59 /* Main.storyboard */,
 				434D87B723116CE800F1DE59 /* Assets.xcassets */,
 				434D87B923116CE800F1DE59 /* LaunchScreen.storyboard */,
 				434D87BC23116CE800F1DE59 /* Info.plist */,
-				4321F3A12319676E0020ABEF /* Home */,
 				434D87C423116DF100F1DE59 /* GAHomeMainModel.swift */,
 				434D87B023116CE600F1DE59 /* AppDelegate.swift */,
+				432C9B2A231A617600CC0577 /* Constant.swift */,
 			);
 			path = Gaana;
 			sourceTree = "<group>";
@@ -224,14 +254,9 @@
 		43B73B97231377DF00DF3CB2 /* Playlist */ = {
 			isa = PBXGroup;
 			children = (
-				43B73B982313780E00DF3CB2 /* GAPlaylistListingVC.swift */,
-				43B73B9A231378A800DF3CB2 /* GAPlaylistListingVM.swift */,
-				43B73B9C23137AEF00DF3CB2 /* GAPlaylistDetailVC.swift */,
-				43B73B9E23137B0700DF3CB2 /* GAPlaylistDetailVM.swift */,
-				43A9DCDE23191CB000A5A9BE /* GAAddToPlaylistVC.swift */,
-				43A9DCE023191CFB00A5A9BE /* GAAddToPlaylistVM.swift */,
-				43A9DCDA23190C9A00A5A9BE /* GASongsListingVC.swift */,
-				43A9DCDC23190DA000A5A9BE /* GASongsListingVM.swift */,
+				4321F3A02319675A0020ABEF /* Cell */,
+				432C9B2C231A6D0A00CC0577 /* Controller */,
+				432C9B2D231A6D1800CC0577 /* ViewModel */,
 			);
 			path = Playlist;
 			sourceTree = "<group>";
@@ -346,6 +371,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				432C9B29231A4CE500CC0577 /* GAAddToPlaylistTableViewCell.xib in Resources */,
 				43A9DCD92319016F00A5A9BE /* GAHeaderTableViewCell.xib in Resources */,
 				435AA8E22318FCB500F2A642 /* GAListingTableViewCell.xib in Resources */,
 				434D87BB23116CE800F1DE59 /* LaunchScreen.storyboard in Resources */,
@@ -388,6 +414,8 @@
 				43A9DCDF23191CB000A5A9BE /* GAAddToPlaylistVC.swift in Sources */,
 				43EB24A62312AEF90061472C /* GACacheImageWrapper.swift in Sources */,
 				43A9DCD82319016F00A5A9BE /* GAHeaderTableViewCell.swift in Sources */,
+				432C9B28231A4CE500CC0577 /* GAAddToPlaylistTableViewCell.swift in Sources */,
+				432C9B2B231A617600CC0577 /* Constant.swift in Sources */,
 				43B73B9D23137AEF00DF3CB2 /* GAPlaylistDetailVC.swift in Sources */,
 				434D87C523116DF100F1DE59 /* GAHomeMainModel.swift in Sources */,
 				43EB24AA2312AF820061472C /* GAAsyncOperation.swift in Sources */,

@@ -26,9 +26,8 @@ class GAHomeVM: NSObject {
     }
     
     func fetchHomeData() {
-        serviceHandler.fetchHomeData(urlString: "https://demo3033278.mockable.io/gaanaDriveTest") {[weak self] (homeModel) in
+        serviceHandler.fetchHomeData(urlString: GAConstants.URL.HomePageURL) {[weak self] (homeModel) in
             self?.modelData = homeModel
-
             for i in 0..<homeModel.count {
                 let viewType = GAViewType(rawValue: i) ?? GAViewType.unknown
                 self?.modelData[i].viewType = viewType
@@ -36,7 +35,6 @@ class GAHomeVM: NSObject {
             DispatchQueue.main.async {
                 self?.completionHandler?(.reloadData)
             }
-            //            print(homeModel)
         }
     }
 }

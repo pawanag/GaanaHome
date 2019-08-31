@@ -86,8 +86,8 @@ struct GAHomeMainModel {
     
     
         init(modelDict : [String: Any]) {
-            name = modelDict["name"] as? String ?? ""
-            if let tracks1 = modelDict["tracks"] as? [[String : Any]]{
+            name = modelDict[GAConstants.ModelKeys.Name] as? String ?? ""
+            if let tracks1 = modelDict[GAConstants.ModelKeys.Tracks] as? [[String : Any]]{
                 for obj in tracks1{
                     let obj = GASongModel(modelDict: obj)
                     tracks.append(obj)

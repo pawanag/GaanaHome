@@ -32,29 +32,36 @@ final class GAPlaylistDetailVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureTableView()
+        addBarButton()
+    }
+    
+    private func configureTableView() {
         registerCells()
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableView.automaticDimension
         tableView.tableFooterView = UIView()
         tableView.allowsMultipleSelectionDuringEditing = false
-        let add = UIBarButtonItem(image: UIImage(named: "delete"), style: .plain, target: self, action: #selector(deleteTapped))
+    }
+    
+    private func addBarButton() {
+        let add = UIBarButtonItem(image: UIImage(named: GAImageNameConstants.Delete), style: .plain, target: self, action: #selector(deleteTapped))
         self.navigationItem.rightBarButtonItem = add
     }
     
     private func registerCells() {
-        self.tableView.register(UINib(nibName: "GAHeaderTableViewCell", bundle: nil), forCellReuseIdentifier: "GAHeaderTableViewCell")
-        self.tableView.register(UINib(nibName: "GAListingTableViewCell", bundle: nil), forCellReuseIdentifier: "GAListingTableViewCell")
+        self.tableView.register(UINib(nibName: GACellConstants.HeaderViewCell, bundle: nil), forCellReuseIdentifier: GACellConstants.HeaderViewCell)
+        self.tableView.register(UINib(nibName: GACellConstants.ListingTableViewCell, bundle: nil), forCellReuseIdentifier: GACellConstants.ListingTableViewCell)
     }
     
     @objc func deleteTapped() {
-        
-        let alertController = UIAlertController(title: viewModel?.playlistModel?.name ?? "", message: "Do you want to delete this playlist?", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "Ok", style: .default, handler: {[weak self] alert -> Void in
+        let alertController = UIAlertController(title: viewModel?.playlistModel?.name ?? "", message: GAAlertConstants.SureDeletePlaylist, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: GAAlertConstants.Ok, style: .default, handler: {[weak self] alert -> Void in
             self?.viewModel?.modelState = .deleted
             self?.navigationController?.popViewController(animated: true)
             // Delete Playlist
         })
-        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: {
+        let cancelAction = UIAlertAction(title: GAAlertConstants.Cancel, style: .default, handler: {
             (action : UIAlertAction!) -> Void in })
         
         alertController.addAction(cancelAction)
@@ -104,15 +111,15 @@ extension GAPlaylistDetailVC : UITableViewDataSource, UITableViewDelegate {
         let playlistSection = playlistSections[indexPath.section]
         switch playlistSection {
         case .header:
-            if let headerCell = tableView.dequeueReusableCell(withIdentifier: "GAHeaderTableViewCell") as? GAHeaderTableViewCell {
+            if let headerCell = tableView.dequeueReusableCell(withIdentifier: GACellConstants.HeaderViewCell) as? GAHeaderTableViewCell {
                 let model = viewModel?.getFeeds().first
                 headerCell.configure(urlString: model?.imageUrl ?? "", indexPath: indexPath)
                 return headerCell
             }
         case .listing:
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "GAListingTableViewCell") as? GAListingTableViewCell {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: GACellConstants.ListingTableViewCell) as? GAListingTableViewCell {
                 if viewModel?.getFeeds().count ?? 0 > indexPath.row, let songModel =  viewModel?.getFeeds()[indexPath.row] {
-                    cell.configure(song: songModel, indexPath: indexPath, type : .addToPlaylistListing)
+                    cell.configure(song: songModel, indexPath: indexPath, type : .playlistDetailListing)
                     cell.delegate = self
                 }
                 return cell
@@ -148,10 +155,10 @@ extension GAPlaylistDetailVC : UITableViewDataSource, UITableViewDelegate {
     
 }
 extension GAPlaylistDetailVC : GAListingCellAction {
-    func listingSelectedForType(type : ListingCellType, modelData : Any) {
-        if let songModel = modelData as? GASongModel, type == ListingCellType.addToPlaylistListing {
-            if let addToPlaylistVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GAAddToPlaylistVC") as? GAAddToPlaylistVC {
-                let addToPlaylistVM = GAAddToPlaylistVM(modelToBeSaved: songModel)
+    func listingSelectedForType(type : ListingCellType, modelData : GASongModel) {
+        if type == ListingCellType.playlistDetailListing {
+            if let addToPlaylistVC = UIStoryboard(name: GAConstants.GAStoryBoardConstants.StoryboardIdentifier, bundle: nil).instantiateViewController(withIdentifier: GAControllerConstants.AddToPlaylist) as? GAAddToPlaylistVC {
+                let addToPlaylistVM = GAAddToPlaylistVM(modelToBeSaved: modelData)
                 addToPlaylistVC.viewModel = addToPlaylistVM
                 self.present(addToPlaylistVC, animated: true, completion: nil)
             }

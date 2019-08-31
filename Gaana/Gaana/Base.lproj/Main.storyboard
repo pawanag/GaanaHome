@@ -403,6 +403,9 @@
                                 <state key="normal" title="Done">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="doneButtonTapped:" destination="aRy-9Z-gkl" eventType="touchUpInside" id="pYb-05-fEa"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -425,6 +428,7 @@
                     </view>
                     <connections>
                         <outlet property="createNewPlaylistButton" destination="CHP-Kq-T83" id="P2x-tW-BVA"/>
+                        <outlet property="doneButton" destination="Zvm-ah-dVl" id="OE9-ky-Po2"/>
                         <outlet property="tableView" destination="A0U-GW-KJS" id="kUN-UK-mAm"/>
                     </connections>
                 </viewController>
