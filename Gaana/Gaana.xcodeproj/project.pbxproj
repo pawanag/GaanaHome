@@ -42,7 +42,6 @@
 		43A9DCE423194B5800A5A9BE /* GACoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A9DCE323194B5800A5A9BE /* GACoreDataManager.swift */; };
 		43A9DCE523194B5800A5A9BE /* GACoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A9DCE323194B5800A5A9BE /* GACoreDataManager.swift */; };
 		43A9DCE823194B7400A5A9BE /* GACoreDataContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 43A9DCE623194B7400A5A9BE /* GACoreDataContainer.xcdatamodeld */; };
-		43A9DCE923194B7400A5A9BE /* GACoreDataContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 43A9DCE623194B7400A5A9BE /* GACoreDataContainer.xcdatamodeld */; };
 		43B73B992313780E00DF3CB2 /* GAPlaylistListingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B73B982313780E00DF3CB2 /* GAPlaylistListingVC.swift */; };
 		43B73B9B231378A800DF3CB2 /* GAPlaylistListingVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B73B9A231378A800DF3CB2 /* GAPlaylistListingVM.swift */; };
 		43B73B9D23137AEF00DF3CB2 /* GAPlaylistDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B73B9C23137AEF00DF3CB2 /* GAPlaylistDetailVC.swift */; };
@@ -448,7 +447,6 @@
 				4341E5A72319C1DB00F27C7B /* GASongModel+CoreDataProperties.swift in Sources */,
 				43A9DCE523194B5800A5A9BE /* GACoreDataManager.swift in Sources */,
 				43EB24B52312BAA10061472C /* GaanaTests.swift in Sources */,
-				43A9DCE923194B7400A5A9BE /* GACoreDataContainer.xcdatamodeld in Sources */,
 				4341E5A82319C1DB00F27C7B /* GASongModel+CoreDataClass.swift in Sources */,
 				4341E5A92319C1DB00F27C7B /* GAPlaylistModel+CoreDataClass.swift in Sources */,
 				43EB24BE2312BBD80061472C /* GAMockConnectionRegistrar.swift in Sources */,

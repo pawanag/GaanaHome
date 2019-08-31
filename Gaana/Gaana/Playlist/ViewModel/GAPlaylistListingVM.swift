@@ -14,18 +14,17 @@ final class GAPlaylistListingVM: NSObject {
     
     override init() {
         super.init()
-        playlistData = GACoreDataManager.sharedInstance.getAllPlaylists()
     }
 
     func getPlaylists() {
         playlistData = GACoreDataManager.sharedInstance.getAllPlaylists()
     }
     
-    func createPlaylist(name : String)  {
+    func createPlaylist(name : String) -> Error?  {
         let playlist = GAPlaylistModel(context: GACoreDataManager.sharedInstance.persistentContainer.viewContext)
         playlist.name = name
-        _ = GACoreDataManager.sharedInstance.saveContext()
-        playlistData.append(playlist)
+        return GACoreDataManager.sharedInstance.saveContext()
+//        playlistData.append(playlist)
     }
     
     func updatePlaylist(playlistModel:GAPlaylistModel, state : GAPlaylistUpdatedState) {

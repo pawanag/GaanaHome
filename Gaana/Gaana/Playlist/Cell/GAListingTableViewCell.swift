@@ -54,6 +54,9 @@ class GAListingTableViewCell: UITableViewCell {
     }
     
     func configure(song : GASongModel, indexPath : IndexPath, type:ListingCellType) {
+        playlistImageView.image = nil
+        name.text = ""
+        
         self.name.text = song.name
         let imageUrl = song.imageUrl
         selectionButton.setImage(UIImage(named: type.imageName), for: .normal)

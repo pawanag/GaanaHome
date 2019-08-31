@@ -46,8 +46,8 @@ final class GAPlaylistListingVC: UIViewController {
         let saveAction = UIAlertAction(title: GAAlertConstants.Save, style: .default, handler: {[weak self] alert -> Void in
             if let textField = alertController.textFields?[0], let text = textField.text {
                 if text.count > 0 {
-                    self?.viewModel.createPlaylist(name:text)
-                    self?.tableView.reloadData()
+                    self?.createPlaylist(name: text)
+                    
                 }
             }
         })
@@ -62,12 +62,21 @@ final class GAPlaylistListingVC: UIViewController {
         self.present(alertController, animated: true, completion: nil)
     }
     
+    private func createPlaylist(name : String) {
+        let error = viewModel.createPlaylist(name:name)
+        if error != nil {
+            showAlert(alertTitle: "", alertMessage: GAAlertConstants.PlaylistExists)
+        } else {
+            viewModel.getPlaylists()
+            tableView.reloadData()
+        }
+    }
     private func registerCells() {
         self.tableView.register(UINib(nibName: GACellConstants.AddToPlaylistTableViewCell, bundle: nil), forCellReuseIdentifier: GACellConstants.AddToPlaylistTableViewCell)
     }
 
-    private func showNoSongsInPlaylistAlert() {
-        let alertController = UIAlertController(title: GAAlertConstants.Oops, message: GAAlertConstants.NoSongsInPlaylist, preferredStyle: .alert)
+    private func showAlert(alertTitle : String, alertMessage :String) {
+        let alertController = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: GAAlertConstants.Ok, style: .default, handler: {
             (action : UIAlertAction!) -> Void in
             self.dismiss(animated: true, completion: nil)
@@ -76,6 +85,7 @@ final class GAPlaylistListingVC: UIViewController {
         self.present(alertController, animated: true, completion: nil)
     }
 }
+
 // MARK: - TableView Data Source Delegates
 
 extension GAPlaylistListingVC :UITableViewDataSource,UITableViewDelegate {
@@ -97,13 +107,8 @@ extension GAPlaylistListingVC :UITableViewDataSource,UITableViewDelegate {
         
         if viewModel.playlistData.count > indexPath.row {
             if let detailVC = UIStoryboard(name: GAConstants.GAStoryBoardConstants.StoryboardIdentifier, bundle: nil).instantiateViewController(withIdentifier: GAControllerConstants.PlaylistDetail) as? GAPlaylistDetailVC {
-                let playlistData = viewModel.playlistData[indexPath.row]
-                if let count = playlistData.songs?.allObjects.count, count > 0 {
-                    detailVC.viewModel = GAPlaylistDetailVM(playlistModel: viewModel.playlistData[indexPath.row])
-                    self.navigationController?.pushViewController(detailVC, animated: true)
-                } else {
-                    showNoSongsInPlaylistAlert()
-                }
+                detailVC.viewModel = GAPlaylistDetailVM(playlistModel: viewModel.playlistData[indexPath.row])
+                self.navigationController?.pushViewController(detailVC, animated: true)
             }
         }
     }

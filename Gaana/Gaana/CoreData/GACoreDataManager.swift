@@ -47,13 +47,17 @@ final class GACoreDataManager:NSObject {
     
     // MARK: - Core Data stack
     lazy var persistentContainer: NSPersistentContainer = {
-
+        
         let container = NSPersistentContainer(name: "GACoreDataContainer")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-            if let error = error as NSError? {
-                fatalError("Unresolved error \(error), \(error.userInfo)")
-            }
+            guard let error = error as NSError? else { return }
+            
+            debugPrint("persistent store container initialization error \(error)")
+            //To Decide the merge Policy
             self.persistentContainer.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+            self.persistentContainer.viewContext.undoManager = nil
+            self.persistentContainer.viewContext.shouldDeleteInaccessibleFaults = true
+            
         })
         return container
     }()
@@ -61,7 +65,6 @@ final class GACoreDataManager:NSObject {
     
     lazy var privateContext:NSManagedObjectContext  = persistentContainer.newBackgroundContext()
     lazy var dummyContext:NSManagedObjectContext  = persistentContainer.newBackgroundContext()
-
     // MARK: - Core Data Saving
     func saveContext () -> Error?{
         //To save private context changes
@@ -88,6 +91,10 @@ final class GACoreDataManager:NSObject {
 extension GACoreDataManager {
     @discardableResult
     func addSongToNewPlaylist(name : String, songModel : GASongModel) -> Error? {
+        if playlistExists(withName: name) {
+            return NSError(domain:"", code: 1, userInfo: [:])
+        }
+        
         let playlist:GAPlaylistModel? = getPlaylist(withName: name)
 
         let songEntityModel:GASongModel? = self.getSongFor(songModel: songModel)
@@ -163,6 +170,15 @@ extension GACoreDataManager {
         return playList
     }
 
+    func playlistExists(withName : String) -> Bool {
+        let request = NSFetchRequest<GAPlaylistModel>(entityName: GADBEntityType.playlist.rawValue)
+        request.predicate = NSPredicate(format: "name = %@", withName)
+        if let result = try? GACoreDataManager.sharedInstance.privateContext.fetch(request), result.count > 0{
+            return true
+        }
+        return false
+    }
+    
     @discardableResult
     func updatePlaylist(name : String,songModel : GASongModel) -> Error? {
 
@@ -198,7 +214,6 @@ extension GACoreDataManager {
             }
             return result
         } catch {
-            print("Failed")
         }
         return [GAPlaylistModel]()
         

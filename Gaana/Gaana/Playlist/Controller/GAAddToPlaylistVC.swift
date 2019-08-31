@@ -41,8 +41,7 @@ final class GAAddToPlaylistVC: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        _ = viewModel?.getPlaylists()
+        viewModel?.getPlaylists()
     }
     
     private func addBorders() {
@@ -64,7 +63,7 @@ final class GAAddToPlaylistVC: UIViewController {
     }
     
     @IBAction func doneButtonTapped(_ sender: UIButton) {
-        self.processResult(error: self.viewModel?.addSongsToSelectedPlaylists())
+        self.processResult(error: self.viewModel?.addSongsToSelectedPlaylists(), shouldDismiss: true, message: GAAlertConstants.SongAdded)
     }
 
     func openAlert(){
@@ -76,36 +75,36 @@ final class GAAddToPlaylistVC: UIViewController {
         let saveAction = UIAlertAction(title:GAAlertConstants.Save, style: .default, handler: {[weak self] alert -> Void in
             if let textField = alertController.textFields?[0], let text = textField.text {
                 if text.count > 0 {
-                    self?.processResult(error: self?.viewModel?.addSongToNewPlaylist(name: text))
+                    self?.processResult(error: self?.viewModel?.createPlaylist(name: text), shouldDismiss: false, message: "")
+                    self?.viewModel?.getPlaylists()
+                    self?.tableView.reloadData()
                 }
             }
         })
-        
         let cancelAction = UIAlertAction(title: GAAlertConstants.Cancel, style: .default, handler: {
             (action : UIAlertAction!) -> Void in })
         
         alertController.addAction(cancelAction)
         alertController.addAction(saveAction)
-        
         alertController.preferredAction = saveAction
-        
         self.present(alertController, animated: true, completion: nil)
     }
 
-    func processResult(error: Error?) {
-        if let error = error {
-            let alertController = UIAlertController(title: GAAlertConstants.Error, message: error.localizedDescription, preferredStyle: .alert)
-
+    func processResult(error: Error?, shouldDismiss : Bool, message : String) {
+        if error != nil {
+            let alertController = UIAlertController(title: GAAlertConstants.Error, message: GAAlertConstants.PlaylistExists, preferredStyle: .alert)
             let cancelAction = UIAlertAction(title: GAAlertConstants.Cancel, style: .default, handler: {
                 (action : UIAlertAction!) -> Void in})
 
             alertController.addAction(cancelAction)
             self.present(alertController, animated: true, completion: nil)
-        } else {
-            let alertController = UIAlertController(title: GAAlertConstants.Success, message: GAAlertConstants.SongAdded, preferredStyle: .alert)
+        } else if message.count > 0 {
+            let alertController = UIAlertController(title: GAAlertConstants.Success, message: message, preferredStyle: .alert)
             let cancelAction = UIAlertAction(title: GAAlertConstants.Ok, style: .default, handler: {
                 (action : UIAlertAction!) -> Void in
-                self.dismiss(animated: true, completion: nil)
+                if shouldDismiss {
+                    self.dismiss(animated: true, completion: nil)
+                }
             })
             alertController.addAction(cancelAction)
             self.present(alertController, animated: true, completion: nil)
@@ -118,14 +117,14 @@ final class GAAddToPlaylistVC: UIViewController {
 extension GAAddToPlaylistVC : UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel?.getPlaylists().count ?? 0
+        return viewModel?.playlistData.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: GACellConstants.AddToPlaylistTableViewCell) as? GAAddToPlaylistTableViewCell {
-            if viewModel?.getPlaylists().count ?? 0 > indexPath.row {
-                if let playListModel =  viewModel?.getPlaylists()[indexPath.row] {
+            if viewModel?.playlistData.count ?? 0 > indexPath.row {
+                if let playListModel =  viewModel?.playlistData[indexPath.row] {
                     cell.configure(playlist: playListModel, indexPath: indexPath, type : .addToPlaylistListing)
                     cell.delegate = self
                 }

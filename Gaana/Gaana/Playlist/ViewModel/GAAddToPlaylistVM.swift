@@ -17,15 +17,23 @@ final class GAAddToPlaylistVM {
     init(modelToBeSaved : GASongModel) {
         self.modelToBeSaved = modelToBeSaved
     }
-    // Add Song to Newly created Playlist
-    func addSongToNewPlaylist(name : String) -> Error? {
-        var error = GACoreDataManager.sharedInstance.addSongToNewPlaylist(name: name, songModel: modelToBeSaved)
-        if error == nil {
-            error = addSongsToSelectedPlaylists()
-            playlistData = GACoreDataManager.sharedInstance.getAllPlaylists()
-        }
-        return error
+    
+    func createPlaylist(name : String) -> Error?  {
+        let playlist = GAPlaylistModel(context: GACoreDataManager.sharedInstance.persistentContainer.viewContext)
+        playlist.name = name
+        return GACoreDataManager.sharedInstance.saveContext()
     }
+    
+    // Add Song to Newly created Playlist
+    // This method is not required as the Songs could be added only on the pressof Done Button
+//    func addSongToNewPlaylist(name : String) -> Error? {
+//        var error = GACoreDataManager.sharedInstance.addSongToNewPlaylist(name: name, songModel: modelToBeSaved)
+//        if error == nil {
+//            error = addSongsToSelectedPlaylists()
+//            playlistData = GACoreDataManager.sharedInstance.getAllPlaylists()
+//        }
+//        return error
+//    }
 
     // Add Songs to All the selected Playlists
     func addSongsToSelectedPlaylists() -> Error? {
@@ -40,22 +48,8 @@ final class GAAddToPlaylistVM {
         return nil
     }
 
-    func addSongToPlaylists(playlists:[GAPlaylistModel]) {
-        
-    }
-
-    func getPlaylists() -> [GAPlaylistModel] {
-        if playlistData.count == 0 {
-            playlistData = GACoreDataManager.sharedInstance.getAllPlaylists(songId: modelToBeSaved.itemId)
-            return playlistData
-        } else {
-            return playlistData
-        }
-    }
-        
-    private func persistPlaylist() {
-        
-        
+    func getPlaylists() {
+        playlistData = GACoreDataManager.sharedInstance.getAllPlaylists(songId: modelToBeSaved.itemId)
     }
     
 }

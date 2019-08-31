@@ -13,9 +13,6 @@ typealias GAControllerConstants = GAConstants.GAControllerConstants
 typealias GACellConstants = GAConstants.GACellConstants
 typealias GAAlertConstants = GAConstants.GAAlertConstants
 typealias GAImageNameConstants = GAConstants.GAImageNameConstants
-//typealias JRNearByNumberConstants = JRNearByConstants.NearByNumberConstants
-//typealias JRNearByErrorCode = JRNearByConstants.ErrorCode
-
 
 struct GAConstants
 {
@@ -62,6 +59,7 @@ struct GAConstants
         static let SongAdded = "Song Added Successfully"
         static let Oops = "Oops!"
         static let NoSongsInPlaylist = "There are no songs in this Playlist, Please select another Playlist"
+        static let PlaylistExists = "Playlist Already Exists"
     }
     
     struct GAImageNameConstants {
