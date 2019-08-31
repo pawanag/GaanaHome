@@ -61,7 +61,7 @@ struct GAConstants
         static let Error = "Error"
         static let SongAdded = "Song Added Successfully"
         static let Oops = "Oops!"
-        static let NoSongsInPlaylist = "There are no somgs in this Playlist, Please select another Playlist"
+        static let NoSongsInPlaylist = "There are no songs in this Playlist, Please select another Playlist"
     }
     
     struct GAImageNameConstants {

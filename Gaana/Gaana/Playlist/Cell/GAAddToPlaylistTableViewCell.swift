@@ -31,8 +31,10 @@ class GAAddToPlaylistTableViewCell: UITableViewCell {
         self.indexPath = indexPath
         if type == .none {
             self.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
+            self.selectionButton.isHidden = true
         } else {
             selectionButton.setImage(UIImage(named: type.imageName), for: .normal)
+            self.selectionButton.isHidden = false
             self.accessoryType = UITableViewCell.AccessoryType.none
         }
         if let songsArray = playlist.songs?.allObjects as? [GASongModel], !songsArray.isEmpty {
