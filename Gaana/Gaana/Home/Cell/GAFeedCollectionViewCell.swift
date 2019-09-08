@@ -23,14 +23,14 @@ class GAFeedCollectionViewCell: UICollectionViewCell {
         cellLabel.text = model.name
         cellLabel.font = cellType.font
         cellImageView.image = nil
-        
-        if let url = URL(string: model.imageUrl ?? "" ){
-            GACacheImageWrapper.sharedInstance.downloadImageWith(url: url, indexPath: indexPath) { [weak self](image, url, indexPathObj, error) in
-                if let imageObj = image, indexPath == indexPathObj{
-                    self?.cellImageView.image = imageObj
-                }
-            }
-        }
+        cellImageView.downloadImage(with: model.imageUrl!)
+//        if let url = URL(string: model.imageUrl ?? "" ){
+//            GACacheImageWrapper.sharedInstance.downloadImageWith(url: url, indexPath: indexPath) { [weak self](image, url, indexPathObj, error) in
+//                if let imageObj = image, indexPath == indexPathObj{
+//                    self?.cellImageView.image = imageObj
+//                }
+//            }
+//        }
     }
 
 }

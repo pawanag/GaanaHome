@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4320B0982322B5530065FC7B /* ImageDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4320B0972322B5530065FC7B /* ImageDownloadManager.swift */; };
 		432C9B28231A4CE500CC0577 /* GAAddToPlaylistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432C9B26231A4CE500CC0577 /* GAAddToPlaylistTableViewCell.swift */; };
 		432C9B29231A4CE500CC0577 /* GAAddToPlaylistTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 432C9B27231A4CE500CC0577 /* GAAddToPlaylistTableViewCell.xib */; };
 		432C9B2B231A617600CC0577 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432C9B2A231A617600CC0577 /* Constant.swift */; };
@@ -67,6 +68,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4320B0972322B5530065FC7B /* ImageDownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDownloadManager.swift; sourceTree = "<group>"; };
 		432C9B26231A4CE500CC0577 /* GAAddToPlaylistTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GAAddToPlaylistTableViewCell.swift; sourceTree = "<group>"; };
 		432C9B27231A4CE500CC0577 /* GAAddToPlaylistTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GAAddToPlaylistTableViewCell.xib; sourceTree = "<group>"; };
 		432C9B2A231A617600CC0577 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 		434D87C62311727200F1DE59 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				4320B0972322B5530065FC7B /* ImageDownloadManager.swift */,
 				434D87C72311728A00F1DE59 /* GANetworkRegistrar.swift */,
 				434D87C9231173A200F1DE59 /* Reachablity.swift */,
 				434D87CB231173E800F1DE59 /* GAUtility.swift */,
@@ -416,6 +419,7 @@
 				43A9DCDB23190C9A00A5A9BE /* GASongsListingVC.swift in Sources */,
 				434D87CC231173E800F1DE59 /* GAUtility.swift in Sources */,
 				43A9DCE423194B5800A5A9BE /* GACoreDataManager.swift in Sources */,
+				4320B0982322B5530065FC7B /* ImageDownloadManager.swift in Sources */,
 				434D87B123116CE600F1DE59 /* AppDelegate.swift in Sources */,
 				43B73B992313780E00DF3CB2 /* GAPlaylistListingVC.swift in Sources */,
 				4341E5A42319C11C00F27C7B /* GASongModel+CoreDataProperties.swift in Sources */,

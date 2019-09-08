@@ -62,11 +62,13 @@ class GAListingTableViewCell: UITableViewCell {
         selectionButton.setImage(UIImage(named: type.imageName), for: .normal)
         self.listingCellType = type
         self.model = song
-        GACacheImageWrapper.sharedInstance.downloadImageWith(url: URL(string: imageUrl ?? ""), indexPath: indexPath, completionHandler: {[weak self] (image, url, indexPathObj, error) in
-            if let image = image, indexPath == indexPathObj {
-                self?.playlistImageView.image = image
-            }
-        })
+        playlistImageView.downloadImage(with: imageUrl!)
+
+//        GACacheImageWrapper.sharedInstance.downloadImageWith(url: URL(string: imageUrl ?? ""), indexPath: indexPath, completionHandler: {[weak self] (image, url, indexPathObj, error) in
+//            if let image = image, indexPath == indexPathObj {
+//                self?.playlistImageView.image = image
+//            }
+//        })
     }
 
     @IBAction func selectionButtonTapped(_ sender: UIButton) {

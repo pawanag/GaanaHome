@@ -19,11 +19,12 @@ class GAHeaderTableViewCell: UITableViewCell {
     
 // MARK: - Configuration of HeaderView
     func configure(urlString : String, indexPath : IndexPath) {
-        GACacheImageWrapper.sharedInstance.downloadImageWith(url: URL(string: urlString), indexPath: indexPath, completionHandler: {[weak self] (image, url, indexPathObj, error) in
-            if let image = image, indexPath == indexPathObj {
-                self?.headerImageView.image = image
-            }
-        })
+        headerImageView.downloadImage(with: urlString)
+//        GACacheImageWrapper.sharedInstance.downloadImageWith(url: URL(string: urlString), indexPath: indexPath, completionHandler: {[weak self] (image, url, indexPathObj, error) in
+//            if let image = image, indexPath == indexPathObj {
+//                self?.headerImageView.image = image
+//            }
+//        })
     }
     
 }

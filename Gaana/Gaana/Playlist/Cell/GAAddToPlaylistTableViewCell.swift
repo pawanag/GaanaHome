@@ -42,11 +42,12 @@ class GAAddToPlaylistTableViewCell: UITableViewCell {
                 self.playlistImageView.image = nil
                 return
             }
-            GACacheImageWrapper.sharedInstance.downloadImageWith(url: URL(string: imageUrl), indexPath: indexPath, completionHandler: {[weak self] (image, url, indexPathObj, error) in
-                if let image = image, indexPath == indexPathObj {
-                    self?.playlistImageView.image = image
-                }
-            })
+            playlistImageView.downloadImage(with: imageUrl)
+//            GACacheImageWrapper.sharedInstance.downloadImageWith(url: URL(string: imageUrl), indexPath: indexPath, completionHandler: {[weak self] (image, url, indexPathObj, error) in
+//                if let image = image, indexPath == indexPathObj {
+//                    self?.playlistImageView.image = image
+//                }
+//            })
             
         } else {
             self.playlistImageView.image = nil
